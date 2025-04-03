@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,41 +35,36 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <a href="#" className="flex items-center">
-              <div className="text-white font-bold text-2xl">
-                <span className="bg-studio-accent px-2 py-1 mr-1">33</span>
-                Digital
-              </div>
-            </a>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/lovable-uploads/edccc396-c913-4335-a752-a447c82e36d9.png" 
+                alt="33 Digital" 
+                className="h-12" 
+              />
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="flex items-center space-x-8">
-              <a
-                href="#home"
+              <Link
+                to="/"
                 className="text-white hover:text-studio-accent transition-colors"
               >
                 Home
-              </a>
-              <a
-                href="#portfolio"
+              </Link>
+              <Link
+                to="/portfolio"
                 className="text-white hover:text-studio-accent transition-colors"
               >
                 Portfolio
-              </a>
-              <a
-                href="#thesis"
-                className="text-white hover:text-studio-accent transition-colors"
-              >
-                Thesis
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                to="/about"
                 className="text-white hover:text-studio-accent transition-colors"
               >
                 About
-              </a>
+              </Link>
               <a
                 href="#contact"
                 className="text-white hover:text-studio-accent transition-colors"
@@ -94,34 +90,27 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-studio animate-fade-in">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="#home"
+            <Link
+              to="/"
               className="block px-3 py-2 text-white hover:text-studio-accent"
               onClick={toggleMenu}
             >
               Home
-            </a>
-            <a
-              href="#portfolio"
+            </Link>
+            <Link
+              to="/portfolio"
               className="block px-3 py-2 text-white hover:text-studio-accent"
               onClick={toggleMenu}
             >
               Portfolio
-            </a>
-            <a
-              href="#thesis"
-              className="block px-3 py-2 text-white hover:text-studio-accent"
-              onClick={toggleMenu}
-            >
-              Thesis
-            </a>
-            <a
-              href="#about"
+            </Link>
+            <Link
+              to="/about"
               className="block px-3 py-2 text-white hover:text-studio-accent"
               onClick={toggleMenu}
             >
               About
-            </a>
+            </Link>
             <a
               href="#contact"
               className="block px-3 py-2 text-white hover:text-studio-accent"

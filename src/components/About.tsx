@@ -71,6 +71,35 @@ const About = () => {
           </div>
         </div>
 
+        <div className="separator"></div>
+
+        <div className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold mb-6 text-center">Meet Sean</h2>
+          <div className="md:flex items-start gap-10">
+            <div className="md:w-1/3 mb-6 md:mb-0">
+              <div className="bg-studio-muted h-80 rounded-lg mb-4"></div>
+            </div>
+            <div className="md:w-2/3">
+              <p className="text-lg text-gray-300 mb-6">
+                Sean is the founder and principal of 33 Digital. He's spent over a decade at the 
+                intersection of design, product development, and growth—building digital products 
+                that not only function, but scale.
+              </p>
+              <p className="text-lg text-gray-300 mb-6">His past work includes:</p>
+              <ul className="list-disc pl-6 mb-6 text-gray-300 space-y-2">
+                <li>Leading product development for American Express, Spotify, and early-stage startups</li>
+                <li>Driving over 100 branded campaigns on Spotify's desktop and mobile platforms, each averaging a 4% engagement rate</li>
+                <li>Launching a new Cash Back Rewards overview experience on AmericanExpress.com for tens of millions of cardmembers</li>
+                <li>Bringing ALL WORLD, a groundbreaking augmented reality iOS app, to market</li>
+              </ul>
+              <p className="text-lg text-gray-300">
+                He's also a certified meditation instructor and a brown belt in Hapkido—proof 
+                that systems thinking, discipline, and focus extend well beyond the screen.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center">
           <a 
             href="#contact" 

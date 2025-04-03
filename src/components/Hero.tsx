@@ -1,6 +1,7 @@
 
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -8,17 +9,18 @@ const Hero = () => {
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="animate-fade-up">
-            We build digital products that{" "}
-            <span className="text-studio-accent">sell themselves.</span>
+            We build digital products that<br />
+            sell<br />
+            themselves
           </h1>
           <p className="mt-6 text-xl text-gray-300 animate-fade-up" style={{ animationDelay: "0.2s" }}>
             33 Digital is a venture and product studio based in Austin, Texas. We partner 
             with early-stage founders to launch scalable, self-sustaining businesses.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <a href="#portfolio" className="btn-primary px-8 py-3">
+            <Link to="/portfolio" className="btn-primary px-8 py-3">
               See Our Work
-            </a>
+            </Link>
             <a href="#thesis" className="btn-outline px-8 py-3">
               Read Our Thesis
             </a>
@@ -46,9 +48,9 @@ const Hero = () => {
               We stake sweat equity and deep product expertise into every company we back. 
               We're not consultants. We show up like co-founders.
             </p>
-            <a href="#about" className="inline-flex items-center text-studio-accent hover:underline">
+            <Link to="/about" className="inline-flex items-center text-studio-accent hover:underline">
               Read Our Approach <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
