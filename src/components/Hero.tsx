@@ -1,6 +1,5 @@
 
 import React from "react";
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -10,8 +9,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="animate-fade-up">
             We build digital products that<br />
-            sell<br />
-            <span className="text-studio-accent">themselves</span>
+            <span className="text-studio-accent">sell themselves</span>
           </h1>
           <p className="mt-6 text-xl text-gray-300 animate-fade-up" style={{ animationDelay: "0.2s" }}>
             33 Digital is a venture and product studio based in Austin, Texas. We partner 
@@ -21,26 +19,23 @@ const Hero = () => {
             <Link to="/portfolio" className="btn-primary px-8 py-3">
               See Our Work
             </Link>
-            <Link to="/about" className="btn-outline px-8 py-3">
-              Learn More
-            </Link>
           </div>
         </div>
 
         <div className="separator"></div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="text-center">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">The difference is how we work.</h2>
             <p className="text-xl md:text-2xl italic text-gray-300 mb-6">
-              Partnering with 33 Digital is an investment into what your product becomes.
+              33 Digital isn't just a partner. We're a bet on your product's future.
             </p>
             <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
               We don't just build apps; we show up like co-founders, turning early-stage 
               ideas into beautifully executed products that grow themselves.
             </p>
-            <Link to="/about" className="inline-flex items-center text-studio-accent hover:underline">
-              Read Our Approach <ArrowRight className="ml-2 h-4 w-4" />
+            <Link to="/about" className="btn-outline px-8 py-3">
+              Learn More
             </Link>
           </div>
         </div>
