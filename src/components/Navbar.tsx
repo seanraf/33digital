@@ -2,11 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useIsMobile();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
 
@@ -53,87 +51,60 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {isMobile ? (
-            <button
-              onClick={toggleMenu}
-              className="text-white focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          ) : (
-            <div className="flex space-x-8">
-              <Link
-                to="/portfolio"
-                className={`text-lg ${
-                  location.pathname === "/portfolio"
-                    ? "text-studio-accent font-semibold"
-                    : "text-white hover:text-studio-accent"
-                } transition-colors`}
-              >
-                Portfolio
-              </Link>
-              <Link
-                to="/about"
-                className={`text-lg ${
-                  location.pathname === "/about"
-                    ? "text-studio-accent font-semibold"
-                    : "text-white hover:text-studio-accent"
-                } transition-colors`}
-              >
-                About
-              </Link>
-            </div>
-          )}
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {isMobile && (
-        <div
-          className={`fixed inset-0 bg-studio z-40 transform transition-transform duration-300 ease-in-out ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          style={{ top: "60px" }}
-        >
-          <div className="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
-            <Link
-              to="/"
-              className={`${
-                location.pathname === "/"
-                  ? "text-studio-accent font-semibold"
-                  : "text-white"
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/portfolio"
-              className={`${
-                location.pathname === "/portfolio"
-                  ? "text-studio-accent font-semibold"
-                  : "text-white"
-              }`}
-            >
-              Portfolio
-            </Link>
-            <Link
-              to="/about"
-              className={`${
-                location.pathname === "/about"
-                  ? "text-studio-accent font-semibold"
-                  : "text-white"
-              }`}
-            >
-              About
-            </Link>
-          </div>
+      {/* Mobile menu overlay */}
+      <div
+        className={`fixed inset-0 bg-studio z-40 transform transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        style={{ top: "60px" }}
+      >
+        <div className="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
+          <Link
+            to="/"
+            className={`${
+              location.pathname === "/"
+                ? "text-studio-accent font-semibold"
+                : "text-white"
+            }`}
+          >
+            Home
+          </Link>
+          <Link
+            to="/portfolio"
+            className={`${
+              location.pathname === "/portfolio"
+                ? "text-studio-accent font-semibold"
+                : "text-white"
+            }`}
+          >
+            Portfolio
+          </Link>
+          <Link
+            to="/about"
+            className={`${
+              location.pathname === "/about"
+                ? "text-studio-accent font-semibold"
+                : "text-white"
+            }`}
+          >
+            About
+          </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
