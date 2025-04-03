@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Portfolio from '@/components/Portfolio';
+import Thesis from '@/components/Thesis';
 import Footer from '@/components/Footer';
 
 const PortfolioPage = () => {
@@ -17,6 +18,7 @@ const PortfolioPage = () => {
           </p>
         </div>
       </div>
+      <Thesis />
       <Portfolio />
       <Footer />
     </div>

@@ -45,7 +45,7 @@ const Thesis = () => {
   ];
 
   return (
-    <section id="thesis" className="py-24">
+    <section id="thesis" className="bg-studio-muted/10 py-24">
       <div className="section-container">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-6">What we believe—and where we bet.</h2>
