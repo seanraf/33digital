@@ -1,7 +1,9 @@
 
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from 'react-helmet-async';
 import Navbar from "@/components/Navbar";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -50,14 +52,22 @@ const BlogPage = () => {
     queryFn: fetchPosts,
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-studio">
+      <Helmet>
+        <title>33 Digital Blog | Work Smarter, Not Harder</title>
+        <meta name="description" content="Ideas and insights to help founders work smarter, not harder. Learn from the team at 33 Digital about building products that scale themselves." />
+      </Helmet>
       <Navbar />
       <div className="pt-24 pb-8 md:pt-28 md:pb-12">
         <div className="section-container">
-          <h1 className="text-center mb-6">Our Blog</h1>
+          <h1 className="text-center mb-6">Blog</h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-10">
-            Thoughts, stories and ideas from the 33 Digital team.
+            Ideas and insights to help builders Work Smarter, Not Harder.
           </p>
           <Separator className="max-w-md mx-auto bg-gray-800 my-12" />
         </div>
@@ -92,7 +102,7 @@ const BlogPage = () => {
                   <div className="h-48 overflow-hidden">
                     <img 
                       src={post.feature_image} 
-                      alt={post.title}
+                      alt={`Visual representation of ${post.title}`}
                       className="w-full h-full object-cover" 
                     />
                   </div>
@@ -119,7 +129,22 @@ const BlogPage = () => {
             ))}
           </div>
         )}
+        
+        {!isLoading && !error && (!posts || posts.length === 0) && (
+          <div className="py-16 text-center">
+            <h3 className="text-2xl font-bold mb-4">Coming Soon</h3>
+            <p className="text-gray-300 mb-8">We're working on great content. Check back soon for articles on:</p>
+            <ul className="max-w-lg mx-auto text-left list-disc pl-8 space-y-3 text-gray-300">
+              <li>The End of Mass Social and the Rise of Micro-Communities</li>
+              <li>AI for Founders: Build Smarter, Not Harder</li>
+              <li>Gamification is Dead. Long Live the Game.</li>
+              <li>Why Product-Led Growth Beats Growth Hacking Every Time</li>
+              <li>The 33 Digital Playbook: Building Self-Sustaining Startups</li>
+            </ul>
+          </div>
+        )}
       </div>
+      <Contact />
       <Footer />
     </div>
   );

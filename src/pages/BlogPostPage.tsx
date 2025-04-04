@@ -1,8 +1,10 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from 'react-helmet-async';
 import Navbar from "@/components/Navbar";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
@@ -20,6 +22,8 @@ type Post = {
   feature_image: string | null;
   published_at: string;
   reading_time: number;
+  meta_title?: string;
+  meta_description?: string;
 };
 
 const fetchPost = async (slug: string): Promise<Post> => {
@@ -46,6 +50,10 @@ const formatDate = (dateString: string): string => {
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
   
   const { data: post, isLoading, error } = useQuery({
     queryKey: ["blogPost", slug],
@@ -60,6 +68,20 @@ const BlogPostPage = () => {
 
   return (
     <div className="min-h-screen bg-studio">
+      <Helmet>
+        {post ? (
+          <>
+            <title>{post.meta_title || `${post.title} | 33 Digital Blog`}</title>
+            <meta name="description" content={post.meta_description || post.excerpt} />
+          </>
+        ) : (
+          <>
+            <title>Blog Post | 33 Digital</title>
+            <meta name="description" content="Read our latest insights on product development and venture building." />
+          </>
+        )}
+      </Helmet>
+      
       <Navbar />
       
       <div className="pt-24 pb-8 md:pt-28 md:pb-12">
@@ -101,7 +123,7 @@ const BlogPostPage = () => {
                 <div className="mb-12">
                   <img
                     src={post.feature_image}
-                    alt={post.title}
+                    alt={`Visual representation of ${post.title}`}
                     className="w-full h-auto rounded-lg"
                   />
                 </div>
@@ -122,6 +144,7 @@ const BlogPostPage = () => {
         </div>
       </div>
       
+      <Contact />
       <Footer />
     </div>
   );

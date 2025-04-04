@@ -7,19 +7,19 @@ const Portfolio = () => {
     {
       title: "TH!RST",
       description:
-        "A social marketplace helping the next generation of beauty founders launch and scale. We provided early-stage product strategy, design, and go-to-market leadership.",
+        "Reimagining social entertainment for the new generation of creators and fans.",
       image: "/placeholder.svg",
     },
     {
       title: "Echo",
       description:
-        "A web3-native voice messaging app focused on ambient connection. We supported Echo's zero-to-one launch with product leadership and system design.",
+        "Building the future of participatory publishing and collective memory.",
       image: "/placeholder.svg",
     },
     {
       title: "Everlink",
       description:
-        "A modern, community-first tool for organizing and surfacing important links in shared networks. We helped Everlink go from concept to beta.",
+        "Bringing peace of mind to physical assets through smart tracking and intelligent alerts.",
       image: "/placeholder.svg",
     },
   ];
@@ -36,7 +36,7 @@ const Portfolio = () => {
               <div className="aspect-video bg-studio-muted/20 rounded-t-lg overflow-hidden">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`Logo of ${project.title}, a 33 Digital portfolio company`}
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -46,12 +46,6 @@ const Portfolio = () => {
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="flex justify-center mt-16">
-          <a href="#contact" className="btn-primary px-8 py-3 flex items-center">
-            Work With Us <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
         </div>
       </div>
     </section>
