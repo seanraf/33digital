@@ -2,15 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +23,6 @@ const Navbar = () => {
     };
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
-
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -46,63 +38,57 @@ const Navbar = () => {
               <img 
                 src="/lovable-uploads/edccc396-c913-4335-a752-a447c82e36d9.png" 
                 alt="33 Digital" 
-                className="h-16" 
+                className="h-12 md:h-14" 
               />
             </Link>
           </div>
 
-          <button
-            onClick={toggleMenu}
-            className="text-white focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu overlay */}
-      <div
-        className={`fixed inset-0 bg-studio z-40 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        style={{ top: "60px" }}
-      >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
-          <Link
-            to="/"
-            className={`${
-              location.pathname === "/"
-                ? "text-studio-accent font-semibold"
-                : "text-white"
-            }`}
-          >
-            Home
-          </Link>
-          <Link
-            to="/portfolio"
-            className={`${
-              location.pathname === "/portfolio"
-                ? "text-studio-accent font-semibold"
-                : "text-white"
-            }`}
-          >
-            Portfolio
-          </Link>
-          <Link
-            to="/about"
-            className={`${
-              location.pathname === "/about"
-                ? "text-studio-accent font-semibold"
-                : "text-white"
-            }`}
-          >
-            About
-          </Link>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button
+                className="text-white focus:outline-none hover:text-studio-accent transition-colors"
+                aria-label="Toggle menu"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+            </SheetTrigger>
+            <SheetContent className="bg-studio border-l border-gray-800 w-full max-w-xs p-6">
+              <div className="flex flex-col items-start justify-start h-full space-y-8 text-xl pt-8">
+                <Link
+                  to="/"
+                  className={`${
+                    location.pathname === "/" ? "text-studio-accent" : "text-white"
+                  } hover:text-studio-accent transition-colors`}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/portfolio"
+                  className={`${
+                    location.pathname === "/portfolio" ? "text-studio-accent" : "text-white"
+                  } hover:text-studio-accent transition-colors`}
+                >
+                  Portfolio
+                </Link>
+                <Link
+                  to="/about"
+                  className={`${
+                    location.pathname === "/about" ? "text-studio-accent" : "text-white"
+                  } hover:text-studio-accent transition-colors`}
+                >
+                  About
+                </Link>
+                <Link
+                  to="/blog"
+                  className={`${
+                    location.pathname === "/blog" ? "text-studio-accent" : "text-white"
+                  } hover:text-studio-accent transition-colors`}
+                >
+                  Blog
+                </Link>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>

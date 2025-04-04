@@ -106,6 +106,35 @@
     @apply bg-[#0f0f0f] text-white;
   }
 
+  /* Blog styles */
+  .prose img {
+    @apply rounded-lg my-8;
+  }
+  
+  .prose p {
+    @apply text-gray-300 mb-6;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-studio-accent pl-4 italic my-8;
+  }
+  
+  .prose ul, .prose ol {
+    @apply my-6 pl-6 text-gray-300;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose h2 {
+    @apply text-3xl font-bold mt-12 mb-6;
+  }
+  
+  .prose h3 {
+    @apply text-2xl font-bold mt-10 mb-4;
+  }
+
   /* Animation classes */
   @keyframes fade-up {
     0% {
