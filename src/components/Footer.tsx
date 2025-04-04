@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { MapPin, Mail, ArrowRight } from "lucide-react";
 
 const Footer = () => {
   const { toast } = useToast();
@@ -40,14 +41,14 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-studio-muted/10 py-16 border-t border-gray-800">
+    <footer className="bg-studio-muted/5 py-20 border-t border-gray-800">
       <div className="section-container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {/* Column 1: Contact Form */}
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Let's Build Something Great Together</h2>
+          <div className="md:border-r md:border-gray-800 md:pr-8">
+            <h2 className="text-2xl font-bold mb-6">Let's Build Together</h2>
             <p className="text-gray-300 mb-6">
-              If you are a founder building something meaningful, we want to hear from you.
+              If you're a founder building something meaningful, we want to hear from you.
             </p>
             
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -60,7 +61,7 @@ const Footer = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all"
                 />
               </div>
               
@@ -73,7 +74,7 @@ const Footer = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all"
                 />
               </div>
               
@@ -85,7 +86,7 @@ const Footer = () => {
                   type="text"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all"
                 />
               </div>
               
@@ -98,7 +99,7 @@ const Footer = () => {
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all resize-none"
                 />
               </div>
               
@@ -106,16 +107,21 @@ const Footer = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary px-6 py-3 w-full"
+                  className="w-full bg-studio-accent text-white py-3 px-6 rounded-md hover:bg-studio-accent/90 transition-colors flex items-center justify-center group"
                 >
-                  {isSubmitting ? "Submitting..." : "Submit"}
+                  {isSubmitting ? "Submitting..." : (
+                    <>
+                      Submit
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>
           </div>
           
           {/* Column 2: About 33 Digital */}
-          <div>
+          <div className="md:px-8">
             <h2 className="text-2xl font-bold mb-6">About 33 Digital</h2>
             <p className="text-gray-300 mb-6">
               33 Digital is a top venture studio and product studio based in Austin, Texas. 
@@ -126,39 +132,25 @@ const Footer = () => {
               to shape the next generation of innovation studios and founder studios.
             </p>
             
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
-                <ul className="grid grid-cols-2 gap-2">
-                  <li>
-                    <Link to="/" className="text-gray-300 hover:text-studio-accent transition-colors">
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/about" className="text-gray-300 hover:text-studio-accent transition-colors">
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/portfolio" className="text-gray-300 hover:text-studio-accent transition-colors">
-                      Portfolio
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/blog" className="text-gray-300 hover:text-studio-accent transition-colors">
-                      Blog
-                    </Link>
-                  </li>
-                </ul>
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold mb-3">Get in Touch</h3>
+              <div className="flex items-center space-x-2 text-gray-300 mb-2">
+                <MapPin className="h-4 w-4 text-studio-accent" />
+                <span>Austin, Texas</span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <Mail className="h-4 w-4 text-studio-accent" />
+                <a href="mailto:hello@33.digital" className="hover:text-studio-accent transition-colors">
+                  hello@33.digital
+                </a>
               </div>
             </div>
           </div>
           
           {/* Column 3: Our Focus */}
-          <div>
+          <div className="md:border-l md:border-gray-800 md:pl-8">
             <h2 className="text-2xl font-bold mb-6">Our Focus</h2>
-            <p className="text-gray-300">
+            <p className="text-gray-300 mb-6">
               At 33 Digital, we specialize in building digital products that scale themselves 
               through product-led growth, AI-powered automation, and community-driven engagement. 
               We work with startups at the earliest stages, bringing our expertise in tech innovation, 
@@ -166,6 +158,24 @@ const Footer = () => {
               ecosystem of startup factories and venture studios, we help founders turn provocative ideas 
               into self-sustaining businesses that thrive in any market.
             </p>
+            
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
+              <div className="grid grid-cols-2 gap-2">
+                <Link to="/" className="text-gray-300 hover:text-studio-accent transition-colors flex items-center">
+                  <ArrowRight className="mr-2 h-3 w-3" /> Home
+                </Link>
+                <Link to="/about" className="text-gray-300 hover:text-studio-accent transition-colors flex items-center">
+                  <ArrowRight className="mr-2 h-3 w-3" /> About
+                </Link>
+                <Link to="/portfolio" className="text-gray-300 hover:text-studio-accent transition-colors flex items-center">
+                  <ArrowRight className="mr-2 h-3 w-3" /> Portfolio
+                </Link>
+                <Link to="/blog" className="text-gray-300 hover:text-studio-accent transition-colors flex items-center">
+                  <ArrowRight className="mr-2 h-3 w-3" /> Blog
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
         

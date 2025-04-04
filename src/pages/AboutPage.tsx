@@ -17,10 +17,10 @@ const AboutPage = () => {
         <meta name="description" content="We build founders as well as products. Learn how 33 Digital partners with startups to launch scalable, self-sustaining businesses." />
       </Helmet>
       <Navbar />
-      <div className="pt-32 pb-16 md:pt-40 md:pb-24">
+      <div className="pt-32 pb-16 md:pt-40 md:pb-20">
         <div className="section-container">
-          <h1 className="text-center mb-6">Who We Are</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Who We Are</h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center leading-relaxed">
             33 Digital is a thesis-driven venture and product studio based in Austin, Texas.
             We partner with early-stage founders to build digital products that scale themselves.
           </p>

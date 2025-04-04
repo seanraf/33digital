@@ -27,8 +27,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-studio/90 backdrop-blur-md shadow-md"
-          : "py-5 bg-transparent"
+          ? "py-3 bg-studio/95 backdrop-blur-md shadow-md"
+          : "py-5 bg-studio/80 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -38,7 +38,7 @@ const Navbar = () => {
               <img 
                 src="/lovable-uploads/edccc396-c913-4335-a752-a447c82e36d9.png" 
                 alt="33 Digital" 
-                className="h-12 md:h-14" 
+                className="h-14 md:h-16 transition-all duration-300 filter brightness-125 contrast-125" 
               />
             </Link>
           </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className="text-white focus:outline-none hover:text-studio-accent transition-colors"
+                className="text-white focus:outline-none hover:text-studio-accent transition-colors p-2 rounded-full hover:bg-studio-muted/20"
                 aria-label="Toggle menu"
               >
                 <Menu className="h-6 w-6" />

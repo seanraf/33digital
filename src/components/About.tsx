@@ -20,13 +20,13 @@ const About = () => {
           </p>
         </div>
 
-        <div className="separator"></div>
+        <div className="separator my-16 border-t border-gray-800"></div>
 
         {/* How We Work Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold mb-10 text-center">How We Work</h2>
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800">
+            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02]">
               <h3 className="text-xl font-bold mb-4">Product-Led Coaching</h3>
               <p className="text-gray-300">
                 For founders who want strategic clarity and sharp executional support, 
@@ -34,7 +34,7 @@ const About = () => {
                 sharpen your user journey, and unlock growth without the guesswork.
               </p>
             </div>
-            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800">
+            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02]">
               <h3 className="text-xl font-bold mb-4">Embedded Leadership</h3>
               <p className="text-gray-300">
                 For ventures that need deeper partnership, we step in as fractional leaders, 
@@ -45,14 +45,72 @@ const About = () => {
           </div>
         </div>
 
-        <div className="separator"></div>
+        <div className="separator my-16 border-t border-gray-800"></div>
+
+        {/* Our Values Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold mb-6 text-center">What We Stand For</h2>
+          <p className="text-lg text-gray-300 mb-10 text-center">
+            The way we build matters as much as what we build. These are the values we carry into every partnership.
+          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+              <h3 className="text-xl font-bold mb-3 text-studio-accent">Grit</h3>
+              <p className="text-gray-300">
+                We are builders first. We know what it takes to launch, iterate, and win. Every challenge is an opportunity, 
+                and we look for founders who share the same relentless drive.
+              </p>
+            </div>
+            
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+              <h3 className="text-xl font-bold mb-3 text-studio-accent">Agency</h3>
+              <p className="text-gray-300">
+                We believe in sovereign entrepreneurs — founders who take full control of their vision, 
+                their growth, and their independence.
+              </p>
+            </div>
+            
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+              <h3 className="text-xl font-bold mb-3 text-studio-accent">Consciousness</h3>
+              <p className="text-gray-300">
+                Great products are designed with care. We build technology that enriches people's lives, 
+                not exploits them. If it doesn't empower users, we don't build it.
+              </p>
+            </div>
+            
+            <div className="md:col-start-1 lg:col-start-2 bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+              <h3 className="text-xl font-bold mb-3 text-studio-accent">Leverage</h3>
+              <p className="text-gray-300">
+                The best businesses don't scale by brute force. They scale through smart systems and automation. 
+                We build for leverage, so products grow themselves.
+              </p>
+            </div>
+            
+            <div className="md:col-start-2 lg:col-start-3 bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+              <h3 className="text-xl font-bold mb-3 text-studio-accent">Service</h3>
+              <p className="text-gray-300">
+                Great founders obsess over their customers. So do we. We help entrepreneurs build 
+                something enduring by focusing relentlessly on the people they serve.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="separator my-16 border-t border-gray-800"></div>
 
         {/* Meet Sean Section */}
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-6 text-center">Meet Sean</h2>
           <div className="md:flex items-start gap-10">
             <div className="md:w-1/3 mb-6 md:mb-0">
-              <div className="bg-studio-muted h-80 rounded-lg mb-4" aria-label="Sean, founder of 33 Digital, at the Austin studio"></div>
+              <div className="bg-studio-muted h-80 rounded-lg mb-4 overflow-hidden">
+                <img 
+                  src="/lovable-uploads/sean-portrait.jpg" 
+                  alt="Sean, founder of 33 Digital, at the Austin studio"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             <div className="md:w-2/3">
               <p className="text-lg text-gray-300 mb-6">
