@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import About from '@/components/About';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 const AboutPage = () => {
@@ -28,7 +27,6 @@ const AboutPage = () => {
         </div>
       </div>
       <About />
-      <Contact />
       <Footer />
     </div>
   );

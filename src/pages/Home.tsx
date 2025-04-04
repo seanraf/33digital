@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 const Home = () => {
@@ -19,7 +18,6 @@ const Home = () => {
       </Helmet>
       <Navbar />
       <Hero />
-      <Contact />
       <Footer />
     </div>
   );

@@ -29,7 +29,7 @@ const Hero = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-6">We are not consultants. We are co-builders.</h2>
+            <h2 className="text-3xl font-bold mb-6">We are not advisors. We are builders.</h2>
             <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
               We stake sweat equity and deep product expertise into every company we back. From zero to one and beyond,
               we help founders turn early ideas into products that acquire, convert, and grow naturally.
@@ -39,7 +39,7 @@ const Hero = () => {
               We build digital products that scale themselves.
             </p>
             <Link to="/about" className="btn-outline px-8 py-3">
-              Meet the Studio
+              About Us
             </Link>
           </div>
         </div>
@@ -47,17 +47,17 @@ const Hero = () => {
         <div className="separator"></div>
         
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Our Values</h2>
+          <h2 className="text-3xl font-bold mb-6">Our Work</h2>
           <p className="text-xl text-gray-300 mb-4">
-            Grit. Agency. Consciousness. Leverage. Service.
+            At 33 Digital, we build digital products that scale themselves.
           </p>
           <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
-            At 33 Digital, these are not just words. They are how we work.
-            We look for founders who share our relentless drive and obsession with customer outcomes. 
-            Together, we build products that help people, not exploit them.
+            We work side by side with early-stage founders to turn ambitious ideas into self-sustaining businesses. 
+            Whether it's embedding AI to unlock leverage, designing products that grow through community, 
+            or building game-like systems that keep people coming back, we help founders build momentum from day one.
           </p>
           <Link to="/portfolio" className="btn-outline px-8 py-3">
-            Our Approach
+            See Our Work <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
