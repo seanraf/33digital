@@ -19,10 +19,10 @@ const AboutPage = () => {
       <Navbar />
       <div className="pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="section-container">
-          <h1 className="text-center mb-6">We build founders as well as products</h1>
+          <h1 className="text-center mb-6">Who We Are</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center">
-            33 Digital is a venture and product studio for entrepreneurs who move fast, 
-            think smarter, and build companies that scale.
+            33 Digital is a thesis-driven venture and product studio based in Austin, Texas.
+            We partner with early-stage founders to build digital products that scale themselves.
           </p>
         </div>
       </div>

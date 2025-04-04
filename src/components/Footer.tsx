@@ -42,7 +42,79 @@ const Footer = () => {
   return (
     <footer className="bg-studio-muted/10 py-16 border-t border-gray-800">
       <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          {/* Column 1: Contact Form */}
+          <div>
+            <h2 className="text-2xl font-bold mb-6">Let's Build Something Great Together</h2>
+            <p className="text-gray-300 mb-6">
+              If you are a founder building something meaningful, we want to hear from you.
+            </p>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">Company</label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">What are you building?</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
+                />
+              </div>
+              
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-primary px-6 py-3 w-full"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
+                </button>
+              </div>
+            </form>
+          </div>
+          
+          {/* Column 2: About 33 Digital */}
           <div>
             <h2 className="text-2xl font-bold mb-6">About 33 Digital</h2>
             <p className="text-gray-300 mb-6">
@@ -83,9 +155,10 @@ const Footer = () => {
             </div>
           </div>
           
-          <div className="md:pl-8">
+          {/* Column 3: Our Focus */}
+          <div>
             <h2 className="text-2xl font-bold mb-6">Our Focus</h2>
-            <p className="text-gray-300 mb-6">
+            <p className="text-gray-300">
               At 33 Digital, we specialize in building digital products that scale themselves 
               through product-led growth, AI-powered automation, and community-driven engagement. 
               We work with startups at the earliest stages, bringing our expertise in tech innovation, 
@@ -94,78 +167,6 @@ const Footer = () => {
               into self-sustaining businesses that thrive in any market.
             </p>
           </div>
-        </div>
-        
-        <div className="max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold mb-6 text-center">Let's Build Something Great Together</h2>
-          <p className="text-gray-300 text-center mb-8">
-            If you are a founder building something meaningful, we want to hear from you.
-          </p>
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">Company</label>
-              <input
-                id="company"
-                name="company"
-                type="text"
-                value={formData.company}
-                onChange={handleChange}
-                className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
-              />
-            </div>
-            
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">What are you building?</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                required
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50"
-              />
-            </div>
-            
-            <div className="text-center pt-4">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-primary px-12 py-3 w-full md:w-auto"
-              >
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </button>
-            </div>
-          </form>
         </div>
         
         <div className="border-t border-gray-800 pt-8">
