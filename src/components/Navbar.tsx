@@ -36,9 +36,9 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/edccc396-c913-4335-a752-a447c82e36d9.png" 
+                src="/lovable-uploads/7139fd1f-ae79-4658-bbb3-5f2e11306cb1.png" 
                 alt="33 Digital" 
-                className="h-14 md:h-16 transition-all duration-300 filter brightness-125 contrast-125" 
+                className="h-16 md:h-20 transition-all duration-300" 
               />
             </Link>
           </div>

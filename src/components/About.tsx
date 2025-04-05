@@ -1,5 +1,8 @@
 
 import React from "react";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const About = () => {
   return (
@@ -7,7 +10,7 @@ const About = () => {
       <div className="section-container">
         {/* Our Positioning Section */}
         <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-center">We're not advisors, we're co-builders.</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We're not advisors, we're co-builders.</h2>
           <p className="text-lg text-gray-300 mb-6">
             At 33 Digital, we stake our time, energy, and expertise into every company we back.
             We show up like co-founders, working alongside early-stage teams to move faster, think smarter, 
@@ -18,15 +21,23 @@ const About = () => {
             and go-to-market execution to build products that acquire, convert, 
             and retain customers naturally.
           </p>
+          <div className="mt-8 flex justify-center">
+            <Button asChild className="bg-studio-accent hover:bg-studio-accent/90">
+              <a href="mailto:hello@33d.co">
+                Get in Touch
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
         </div>
 
-        <div className="separator my-16 border-t border-gray-800"></div>
+        <Separator className="my-16 bg-gray-800/50" />
 
         {/* How We Work Section */}
         <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-10 text-center">How We Work</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">How We Work</h2>
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02]">
+            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02] hover:border-studio-accent/30">
               <h3 className="text-xl font-bold mb-4">Product-Led Coaching</h3>
               <p className="text-gray-300">
                 For founders who want strategic clarity and sharp executional support, 
@@ -34,7 +45,7 @@ const About = () => {
                 sharpen your user journey, and unlock growth without the guesswork.
               </p>
             </div>
-            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02]">
+            <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02] hover:border-studio-accent/30">
               <h3 className="text-xl font-bold mb-4">Embedded Leadership</h3>
               <p className="text-gray-300">
                 For ventures that need deeper partnership, we step in as fractional leaders, 
@@ -45,17 +56,17 @@ const About = () => {
           </div>
         </div>
 
-        <div className="separator my-16 border-t border-gray-800"></div>
+        <Separator className="my-16 bg-gray-800/50" />
 
         {/* Our Values Section */}
         <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-center">What We Stand For</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">What We Stand For</h2>
           <p className="text-lg text-gray-300 mb-10 text-center">
             The way we build matters as much as what we build. These are the values we carry into every partnership.
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Grit</h3>
               <p className="text-gray-300">
                 We are builders first. We know what it takes to launch, iterate, and win. Every challenge is an opportunity, 
@@ -63,7 +74,7 @@ const About = () => {
               </p>
             </div>
             
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Agency</h3>
               <p className="text-gray-300">
                 We believe in sovereign entrepreneurs — founders who take full control of their vision, 
@@ -71,7 +82,7 @@ const About = () => {
               </p>
             </div>
             
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Consciousness</h3>
               <p className="text-gray-300">
                 Great products are designed with care. We build technology that enriches people's lives, 
@@ -79,7 +90,7 @@ const About = () => {
               </p>
             </div>
             
-            <div className="md:col-start-1 lg:col-start-2 bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+            <div className="md:col-start-1 lg:col-start-2 bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Leverage</h3>
               <p className="text-gray-300">
                 The best businesses don't scale by brute force. They scale through smart systems and automation. 
@@ -87,7 +98,7 @@ const About = () => {
               </p>
             </div>
             
-            <div className="md:col-start-2 lg:col-start-3 bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50">
+            <div className="md:col-start-2 lg:col-start-3 bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Service</h3>
               <p className="text-gray-300">
                 Great founders obsess over their customers. So do we. We help entrepreneurs build 
@@ -97,18 +108,18 @@ const About = () => {
           </div>
         </div>
 
-        <div className="separator my-16 border-t border-gray-800"></div>
+        <Separator className="my-16 bg-gray-800/50" />
 
         {/* Meet Sean Section */}
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">Meet Sean</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Meet Sean</h2>
           <div className="md:flex items-start gap-10">
             <div className="md:w-1/3 mb-6 md:mb-0">
-              <div className="bg-studio-muted h-80 rounded-lg mb-4 overflow-hidden">
+              <div className="bg-studio-muted h-80 rounded-lg mb-4 overflow-hidden shadow-xl">
                 <img 
                   src="/lovable-uploads/sean-portrait.jpg" 
                   alt="Sean, founder of 33 Digital, at the Austin studio"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                 />
               </div>
             </div>
@@ -131,6 +142,15 @@ const About = () => {
                 brown belt in Hapkido. Everything I do is about pursuing growth — personal, 
                 professional, and for the founders we partner with.
               </p>
+              
+              <div className="mt-8">
+                <Button asChild variant="outline" className="hover:border-studio-accent hover:text-studio-accent">
+                  <a href="mailto:hello@33d.co">
+                    Connect with Sean
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

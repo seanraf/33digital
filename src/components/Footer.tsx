@@ -1,123 +1,66 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
-import { MapPin, Mail, ArrowRight } from "lucide-react";
+import { MapPin, Mail, ArrowRight, Twitter, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
-  const { toast } = useToast();
   const currentYear = new Date().getFullYear();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Message sent",
-        description: "Thank you for reaching out. We'll be in touch shortly.",
-      });
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        message: ""
-      });
-    }, 1500);
-  };
 
   return (
     <footer className="bg-studio-muted/5 py-20 border-t border-gray-800">
       <div className="section-container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-          {/* Column 1: Contact Form */}
+          {/* Column 1: Contact Info */}
           <div className="md:border-r md:border-gray-800 md:pr-8">
-            <h2 className="text-2xl font-bold mb-6">Let's Build Together</h2>
+            <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
             <p className="text-gray-300 mb-6">
               If you're a founder building something meaningful, we want to hear from you.
+              Let's explore how we can help turn your vision into a self-sustaining business.
             </p>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all"
-                />
-              </div>
+            <div className="flex flex-col space-y-4">
+              <Button asChild className="bg-studio-accent hover:bg-studio-accent/90 text-white w-full md:w-auto">
+                <a href="mailto:hello@33d.co">
+                  Contact Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
               
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">Company</label>
-                <input
-                  id="company"
-                  name="company"
-                  type="text"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">What are you building?</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full bg-studio-muted/20 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-studio-accent/50 transition-all resize-none"
-                />
-              </div>
-              
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-studio-accent text-white py-3 px-6 rounded-md hover:bg-studio-accent/90 transition-colors flex items-center justify-center group"
+              <div className="flex items-center space-x-6 mt-4 pt-2">
+                <a 
+                  href="https://twitter.com/33digital" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-studio-accent transition-colors"
+                  aria-label="Twitter/X"
                 >
-                  {isSubmitting ? "Submitting..." : (
-                    <>
-                      Submit
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </>
-                  )}
-                </button>
+                  <Twitter className="h-5 w-5" />
+                </a>
+                <a 
+                  href="https://linkedin.com/company/33digital" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-studio-accent transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
               </div>
-            </form>
+            </div>
+            
+            <div className="mt-8">
+              <div className="flex items-center space-x-2 text-gray-300 mb-2">
+                <MapPin className="h-4 w-4 text-studio-accent" />
+                <span>Austin, Texas</span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <Mail className="h-4 w-4 text-studio-accent" />
+                <a href="mailto:hello@33d.co" className="hover:text-studio-accent transition-colors">
+                  hello@33d.co
+                </a>
+              </div>
+            </div>
           </div>
           
           {/* Column 2: About 33 Digital */}
@@ -131,20 +74,6 @@ const Footer = () => {
               Combining Silicon Valley ideas with Texas-sized ambition, we are helping 
               to shape the next generation of innovation studios and founder studios.
             </p>
-            
-            <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-3">Get in Touch</h3>
-              <div className="flex items-center space-x-2 text-gray-300 mb-2">
-                <MapPin className="h-4 w-4 text-studio-accent" />
-                <span>Austin, Texas</span>
-              </div>
-              <div className="flex items-center space-x-2 text-gray-300">
-                <Mail className="h-4 w-4 text-studio-accent" />
-                <a href="mailto:hello@33.digital" className="hover:text-studio-accent transition-colors">
-                  hello@33.digital
-                </a>
-              </div>
-            </div>
           </div>
           
           {/* Column 3: Our Focus */}
