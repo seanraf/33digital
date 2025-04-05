@@ -27,8 +27,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-studio/95 backdrop-blur-md shadow-md"
-          : "py-5 bg-studio/80 backdrop-blur-sm"
+          ? "py-2 bg-studio/95 backdrop-blur-md shadow-md"
+          : "py-3 bg-studio/80 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -36,15 +36,56 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/7139fd1f-ae79-4658-bbb3-5f2e11306cb1.png" 
+                src="/lovable-uploads/edccc396-c913-4335-a752-a447c82e36d9.png" 
                 alt="33 Digital" 
-                className="h-16 md:h-20 transition-all duration-300" 
+                className={`transition-all duration-300 w-auto ${
+                  scrolled ? "h-14" : "h-16"
+                }`}
+                style={{ 
+                  objectFit: "contain", 
+                  filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))"
+                }}
               />
             </Link>
           </div>
 
+          <div className="hidden md:flex space-x-8 items-center">
+            <Link
+              to="/"
+              className={`${
+                location.pathname === "/" ? "text-studio-accent" : "text-white"
+              } hover:text-studio-accent transition-colors font-medium`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/portfolio"
+              className={`${
+                location.pathname === "/portfolio" ? "text-studio-accent" : "text-white"
+              } hover:text-studio-accent transition-colors font-medium`}
+            >
+              Portfolio
+            </Link>
+            <Link
+              to="/about"
+              className={`${
+                location.pathname === "/about" ? "text-studio-accent" : "text-white"
+              } hover:text-studio-accent transition-colors font-medium`}
+            >
+              About
+            </Link>
+            <Link
+              to="/blog"
+              className={`${
+                location.pathname === "/blog" ? "text-studio-accent" : "text-white"
+              } hover:text-studio-accent transition-colors font-medium`}
+            >
+              Blog
+            </Link>
+          </div>
+
           <Sheet>
-            <SheetTrigger asChild>
+            <SheetTrigger asChild className="md:hidden">
               <button
                 className="text-white focus:outline-none hover:text-studio-accent transition-colors p-2 rounded-full hover:bg-studio-muted/20"
                 aria-label="Toggle menu"
