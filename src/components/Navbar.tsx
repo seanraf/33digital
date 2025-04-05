@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -27,27 +27,25 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "py-2 bg-studio/95 backdrop-blur-md shadow-md"
-          : "py-3 bg-studio/80 backdrop-blur-sm"
+          ? "py-3 bg-studio/95 backdrop-blur-md shadow-md"
+          : "py-5 bg-studio/80 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <img 
-                src="/lovable-uploads/edccc396-c913-4335-a752-a447c82e36d9.png" 
-                alt="33 Digital" 
-                className={`transition-all duration-300 w-auto ${
-                  scrolled ? "h-14" : "h-16"
-                }`}
-                style={{ 
-                  objectFit: "contain", 
-                  filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))"
-                }}
-              />
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/3b28358f-a8b3-4617-b32d-a28dd8897ddf.png" 
+              alt="33 Digital" 
+              className={`transition-all duration-300 h-auto ${
+                scrolled ? "w-36 md:w-44" : "w-40 md:w-48"
+              }`}
+              style={{ 
+                objectFit: "contain", 
+                filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))"
+              }}
+            />
+          </Link>
 
           <div className="hidden md:flex space-x-8 items-center">
             <Link
