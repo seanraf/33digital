@@ -47,43 +47,8 @@ const Navbar = () => {
             />
           </Link>
 
-          <div className="hidden md:flex space-x-8 items-center">
-            <Link
-              to="/"
-              className={`${
-                location.pathname === "/" ? "text-studio-accent" : "text-white"
-              } hover:text-studio-accent transition-colors font-medium`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/portfolio"
-              className={`${
-                location.pathname === "/portfolio" ? "text-studio-accent" : "text-white"
-              } hover:text-studio-accent transition-colors font-medium`}
-            >
-              Portfolio
-            </Link>
-            <Link
-              to="/about"
-              className={`${
-                location.pathname === "/about" ? "text-studio-accent" : "text-white"
-              } hover:text-studio-accent transition-colors font-medium`}
-            >
-              About
-            </Link>
-            <Link
-              to="/blog"
-              className={`${
-                location.pathname === "/blog" ? "text-studio-accent" : "text-white"
-              } hover:text-studio-accent transition-colors font-medium`}
-            >
-              Blog
-            </Link>
-          </div>
-
           <Sheet>
-            <SheetTrigger asChild className="md:hidden">
+            <SheetTrigger asChild>
               <button
                 className="text-white focus:outline-none hover:text-studio-accent transition-colors p-2 rounded-full hover:bg-studio-muted/20"
                 aria-label="Toggle menu"
