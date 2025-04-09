@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from 'react-helmet-async';
 import Navbar from "@/components/Navbar";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -63,7 +62,7 @@ const BlogPage = () => {
         <meta name="description" content="Ideas and insights to help founders work smarter, not harder. Learn from the team at 33 Digital about building products that scale themselves." />
       </Helmet>
       <Navbar />
-      <div className="pt-24 pb-8 md:pt-28 md:pb-12">
+      <div className="pt-36 pb-8 md:pt-44 md:pb-12">
         <div className="section-container">
           <h1 className="text-center mb-6">Blog</h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-10">
@@ -144,7 +143,6 @@ const BlogPage = () => {
           </div>
         )}
       </div>
-      <Contact />
       <Footer />
     </div>
   );

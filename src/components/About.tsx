@@ -142,15 +142,6 @@ const About = () => {
                 brown belt in Hapkido. Everything I do is about pursuing growth — personal, 
                 professional, and for the founders we partner with.
               </p>
-              
-              <div className="mt-8">
-                <Button asChild variant="outline" className="hover:border-studio-accent hover:text-studio-accent">
-                  <a href="mailto:hello@33d.co">
-                    Connect with Sean
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
             </div>
           </div>
         </div>

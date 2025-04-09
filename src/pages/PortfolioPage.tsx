@@ -18,7 +18,7 @@ const PortfolioPage = () => {
         <meta name="description" content="Explore 33 Digital's portfolio and venture thesis. We back founders building AI-powered, community-first, and game-like digital products." />
       </Helmet>
       <Navbar />
-      <div className="pt-24 pb-8 md:pt-28 md:pb-12">
+      <div className="pt-36 pb-8 md:pt-44 md:pb-12">
         <div className="section-container">
           <h1 className="text-center mb-6">Our Work and Worldview</h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-10">
