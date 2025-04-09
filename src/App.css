@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+@media (max-width: 768px) {
+  .values-container {
+    grid-template-columns: 1fr;
+  }
+
+  .values-container .flex {
+    flex-direction: column;
+  }
+
+  .values-container > div:nth-child(4),
+  .values-container > div:nth-child(5) {
+    grid-column: auto;
+  }
+}

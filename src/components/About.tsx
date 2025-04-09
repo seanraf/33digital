@@ -65,8 +65,8 @@ const About = () => {
             The way we build matters as much as what we build. These are the values we carry into every partnership.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 md:mx-auto max-w-6xl">
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1 lg:col-span-1">
+          <div className="grid md:grid-cols-3 gap-8 md:mx-auto max-w-6xl values-container">
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Grit</h3>
               <p className="text-gray-300">
                 We are builders first. We know what it takes to launch, iterate, and win. Every challenge is an opportunity,
@@ -74,7 +74,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1 lg:col-span-1">
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Agency</h3>
               <p className="text-gray-300">
                 We believe in sovereign entrepreneurs — founders who take full control of their vision,
@@ -82,28 +82,29 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1 lg:col-span-1">
+            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Consciousness</h3>
               <p className="text-gray-300">
                 Great products are designed with care. We build technology that enriches people's lives,
                 not exploits them. If it doesn't empower users, we don't build it.
               </p>
             </div>
+            <div className="md:col-span-3 flex justify-center gap-8">
+              <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
+                <h3 className="text-xl font-bold mb-3 text-studio-accent">Leverage</h3>
+                <p className="text-gray-300">
+                  The best businesses don't scale by brute force. They scale through smart systems and automation.
+                  We build for leverage, so products grow themselves.
+                </p>
+              </div>
 
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-start-2 md:col-span-3 lg:col-start-2 lg:col-span-3">
-              <h3 className="text-xl font-bold mb-3 text-studio-accent">Leverage</h3>
-              <p className="text-gray-300">
-                The best businesses don't scale by brute force. They scale through smart systems and automation.
-                We build for leverage, so products grow themselves.
-              </p>
-            </div>
-
-            <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-start-2 md:col-span-3 lg:col-start-2 lg:col-span-3">
-              <h3 className="text-xl font-bold mb-3 text-studio-accent">Service</h3>
-              <p className="text-gray-300">
-                Great founders obsess over their customers. So do we. We help entrepreneurs build
-                something enduring by focusing relentlessly on the people they serve.
-              </p>
+              <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
+                <h3 className="text-xl font-bold mb-3 text-studio-accent">Service</h3>
+                <p className="text-gray-300">
+                  Great founders obsess over their customers. So do we. We help entrepreneurs build
+                  something enduring by focusing relentlessly on the people they serve.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -117,7 +118,7 @@ const About = () => {
             <div className="md:w-1/3 mb-6 md:mb-0">
               <div className="bg-studio-muted h-80 rounded-lg mb-4 overflow-hidden shadow-xl">
                 <img 
-                  src="/lovable-uploads/sean-portrait.jpg" 
+                  src="/lovable-uploads/IMG_0085.png" 
                   alt="Sean, founder of 33 Digital, at the Austin studio"
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                 />

@@ -19,7 +19,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://x.com" 
+                href="http://www.x.com/seanraf"
                 target="_blank" 
                 rel="noreferrer" 
                 className="text-gray-300 hover:text-studio-accent transition-colors"
@@ -28,7 +28,7 @@ const Footer = () => {
                 <X size={20} />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="http://www.linkedin.com/in/seanraftery"
                 target="_blank" 
                 rel="noreferrer" 
                 className="text-gray-300 hover:text-studio-accent transition-colors"
