@@ -11,7 +11,7 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-studio">
+    <div className="min-h-screen bg-studio pt-24">
       <Helmet>
         <title>About 33 Digital | Austin's Venture & Product Studio for Founders</title>
         <meta name="description" content="We build founders as well as products. Learn how 33 Digital partners with startups to launch scalable, self-sustaining businesses." />

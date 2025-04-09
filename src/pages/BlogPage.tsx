@@ -9,8 +9,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, ArrowRight } from "lucide-react";
 
 // Ghost content API configuration
-const GHOST_URL = "https://demo.ghost.io"; // Replace with your Ghost URL
-const GHOST_CONTENT_API_KEY = "22444f78447824223cefc48062"; // Replace with your Content API key
+const GHOST_URL = "http://localhost:2368"; // Your local Ghost URL
+const GHOST_CONTENT_API_KEY = "5739f3b93fa4a4488d9d0a715d"; // Your Content API key
 const GHOST_API_VERSION = "v5.0";
 
 type Post = {
@@ -25,13 +25,14 @@ type Post = {
 };
 
 const fetchPosts = async (): Promise<Post[]> => {
-  const url = `${GHOST_URL}/ghost/api/content/posts/?key=${GHOST_CONTENT_API_KEY}&include=tags,authors&limit=10`;
+  const url = `${GHOST_URL}/ghost/api/content/posts/?key=${GHOST_CONTENT_API_KEY}&filter=tag:-[thesis,portfolio]&include=tags,authors&limit=10`;
   const response = await fetch(url);
-  
+
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    console.error("Error fetching blog posts:", response.status, response.statusText);
+    return [];
   }
-  
+
   const data = await response.json();
   return data.posts;
 };
@@ -56,7 +57,7 @@ const BlogPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-studio">
+    <div className="min-h-screen bg-studio pt-24">
       <Helmet>
         <title>33 Digital Blog | Work Smarter, Not Harder</title>
         <meta name="description" content="Ideas and insights to help founders work smarter, not harder. Learn from the team at 33 Digital about building products that scale themselves." />

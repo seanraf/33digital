@@ -12,7 +12,7 @@ const PortfolioPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-studio">
+    <div className="min-h-screen bg-studio pt-24">
       <Helmet>
         <title>Our Work & Worldview | 33 Digital Portfolio & Venture Thesis</title>
         <meta name="description" content="Explore 33 Digital's portfolio and venture thesis. We back founders building AI-powered, community-first, and game-like digital products." />
