@@ -89,8 +89,8 @@ const About = () => {
                 not exploits them. If it doesn't empower users, we don't build it.
               </p>
             </div>
-            <div className="md:col-span-3 flex justify-center gap-8">
-              <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
+            <div className="md:col-span-3 md:flex md:justify-center gap-8">
+              <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20">
                 <h3 className="text-xl font-bold mb-3 text-studio-accent">Leverage</h3>
                 <p className="text-gray-300">
                   The best businesses don't scale by brute force. They scale through smart systems and automation.
@@ -98,7 +98,7 @@ const About = () => {
                 </p>
               </div>
 
-              <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
+              <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 mt-8 md:mt-0">
                 <h3 className="text-xl font-bold mb-3 text-studio-accent">Service</h3>
                 <p className="text-gray-300">
                   Great founders obsess over their customers. So do we. We help entrepreneurs build
