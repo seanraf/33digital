@@ -82,6 +82,14 @@ const Navbar = () => {
                 >
                   About
                 </Link>
+                {/* <Link
+                  to="/portfolio"
+                  className={`${
+                    location.pathname === "/portfolio" ? "text-studio-accent" : "text-white"
+                  } hover:text-studio-accent transition-colors`}
+                >
+                  Portfolio
+                </Link> */}
                 <a
                   href="mailto:hello@33d.co"
                   className="text-white hover:text-studio-accent transition-colors"

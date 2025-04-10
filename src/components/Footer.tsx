@@ -46,15 +46,15 @@ const Footer = () => {
               <Link to="/" className="text-gray-300 hover:text-studio-accent transition-colors">
                 Home
               </Link>
-              <Link to="/portfolio" className="text-gray-300 hover:text-studio-accent transition-colors">
-                Portfolio
-              </Link>
               <Link to="/about" className="text-gray-300 hover:text-studio-accent transition-colors">
                 About
               </Link>
-              <Link to="/blog" className="text-gray-300 hover:text-studio-accent transition-colors">
-                Blog
-              </Link>
+              <a
+                href="mailto:hello@33d.co"
+                className="text-gray-300 hover:text-studio-accent transition-colors"
+              >
+                Contact
+              </a>
             </div>
           </div>
 
