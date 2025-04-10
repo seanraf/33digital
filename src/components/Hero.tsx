@@ -56,9 +56,9 @@ const Hero = () => {
             Whether it's embedding AI to unlock leverage, designing products that grow through community, 
             or building game-like systems that keep people coming back, we help founders build momentum from day one.
           </p>
-          <Link to="/portfolio" className="btn-outline px-8 py-3">
+          {/* <Link to="/portfolio" className="btn-outline px-8 py-3">
             See Our Work <span aria-hidden="true">→</span>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>
