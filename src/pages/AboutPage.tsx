@@ -15,6 +15,8 @@ const AboutPage = () => {
       <Helmet>
         <title>About 33 Digital | Austin's Venture & Product Studio for Founders</title>
         <meta name="description" content="We build founders as well as products. Learn how 33 Digital partners with startups to launch scalable, self-sustaining businesses." />
+        <meta property="og:image" content="/lovable-uploads/33 Digital.png" />
+        <meta name="twitter:image" content="/lovable-uploads/33 Digital.png" />
       </Helmet>
       <Navbar />
       <div className="pt-36 pb-16 md:pt-44 md:pb-20">

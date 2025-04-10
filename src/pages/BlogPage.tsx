@@ -61,6 +61,8 @@ const BlogPage = () => {
       <Helmet>
         <title>33 Digital Blog | Work Smarter, Not Harder</title>
         <meta name="description" content="Ideas and insights to help founders work smarter, not harder. Learn from the team at 33 Digital about building products that scale themselves." />
+        <meta property="og:image" content="/lovable-uploads/33 Digital.png" />
+        <meta name="twitter:image" content="/lovable-uploads/33 Digital.png" />
       </Helmet>
       <Navbar />
       <div className="pt-36 pb-8 md:pt-44 md:pb-12">

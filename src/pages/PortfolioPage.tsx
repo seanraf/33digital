@@ -16,6 +16,8 @@ const PortfolioPage = () => {
       <Helmet>
         <title>Our Work & Worldview | 33 Digital Portfolio & Venture Thesis</title>
         <meta name="description" content="Explore 33 Digital's portfolio and venture thesis. We back founders building AI-powered, community-first, and game-like digital products." />
+        <meta property="og:image" content="/lovable-uploads/33 Digital.png" />
+        <meta name="twitter:image" content="/lovable-uploads/33 Digital.png" />
       </Helmet>
       <Navbar />
       <div className="pt-36 pb-8 md:pt-44 md:pb-12">
