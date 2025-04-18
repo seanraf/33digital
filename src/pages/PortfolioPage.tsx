@@ -4,8 +4,36 @@ import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 // import Portfolio from '@/components/Portfolio'; // Will be replaced or modified
 // import Thesis from '@/components/Thesis'; // Will be replaced or modified
+import { Link } from 'react-router-dom'; // Import Link for navigation
+import { ArrowRight } from 'lucide-react'; // Import icon for link
 import Footer from '@/components/Footer';
 import { sanityClient, Post } from '@/lib/sanityClient'; // Import Sanity client and Post type
+
+// Helper function to generate a simple text excerpt from Portable Text
+const generateExcerpt = (body: any[] | undefined, maxLength = 150): string => {
+  if (!body) {
+    return 'No content available.';
+  }
+  let text = '';
+  for (const block of body) {
+    if (block._type === 'block' && block.children) {
+      for (const span of block.children) {
+        if (span._type === 'span' && span.text) {
+          text += span.text + ' ';
+        }
+      }
+    }
+    if (text.length >= maxLength) {
+      break;
+    }
+  }
+  text = text.trim();
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + '...';
+  }
+  return text || 'No text content available.';
+};
+
 
 const PortfolioPage = () => {
   const [portfolioPosts, setPortfolioPosts] = useState<Post[]>([]);
@@ -20,8 +48,13 @@ const PortfolioPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const portfolioQuery = `*[_type == "post" && "portfolio" in tags[]] | order(publishedAt desc)`;
-        const thesisQuery = `*[_type == "post" && "thesis" in tags[]] | order(publishedAt desc)`;
+        // Update queries to select specific fields
+        const portfolioQuery = `*[_type == "post" && "portfolio" in tags[]] | order(publishedAt desc) {
+          _id, title, slug, body
+        }`;
+        const thesisQuery = `*[_type == "post" && "thesis" in tags[]] | order(publishedAt desc) {
+           _id, title, slug, body
+        }`;
 
         const [portfolioResult, thesisResult] = await Promise.all([
           sanityClient.fetch<Post[]>(portfolioQuery),
@@ -68,13 +101,21 @@ const PortfolioPage = () => {
         {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {thesisPosts.length > 0 ? (
-              thesisPosts.map((post) => (
-                // Placeholder for Thesis Post Card - Replace with actual component later
-                <div key={post._id} className="bg-gray-800 p-4 rounded shadow">
-                  <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                  {/* Add more post details here */}
-                </div>
-              ))
+              thesisPosts.map((post) => {
+                const excerpt = generateExcerpt(post.body);
+                return (
+                  <div key={post._id} className="bg-gray-900 p-6 rounded-lg shadow border border-gray-800 flex flex-col">
+                    <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
+                    <p className="text-gray-400 mb-4 text-sm flex-grow">{excerpt}</p>
+                    <Link
+                      to={`/blog/${post.slug?.current}`} // Link to the full post
+                      className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
+                    >
+                      Read More <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                );
+              })
             ) : (
               <p className="text-center col-span-full">No thesis posts found.</p>
             )}
@@ -90,13 +131,21 @@ const PortfolioPage = () => {
          {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioPosts.length > 0 ? (
-              portfolioPosts.map((post) => (
-                 // Placeholder for Portfolio Post Card - Replace with actual component later
-                <div key={post._id} className="bg-gray-800 p-4 rounded shadow">
-                  <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                  {/* Add more post details here */}
-                 </div>
-              ))
+              portfolioPosts.map((post) => {
+                 const excerpt = generateExcerpt(post.body);
+                 return (
+                   <div key={post._id} className="bg-gray-900 p-6 rounded-lg shadow border border-gray-800 flex flex-col">
+                     <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
+                     <p className="text-gray-400 mb-4 text-sm flex-grow">{excerpt}</p>
+                     <Link
+                       to={`/blog/${post.slug?.current}`} // Link to the full post
+                       className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
+                     >
+                       Read More <ArrowRight className="ml-1 h-4 w-4" />
+                     </Link>
+                   </div>
+                 );
+               })
             ) : (
               <p className="text-center col-span-full">No portfolio posts found.</p>
             )}

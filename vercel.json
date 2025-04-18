@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!api/|_next/|static/|favicon.ico|lovable-uploads/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
