@@ -67,11 +67,12 @@ const BlogPostPage = () => {
     <div className="min-h-screen bg-studio">
       <Helmet>
         <title>{post ? `${post.title} | 33 Digital Blog` : 'Blog Post | 33 Digital'}</title>
-        <meta name="description" content={post ? `${post.title} - Read our insights on this topic` : 'Read insights from 33 Digital on building products that scale themselves'} />
-        {/* Add default social share images */}
-        <meta property="og:image" content="/lovable-uploads/33 Digital.png" />
-        <meta name="twitter:image" content="/lovable-uploads/33 Digital.png" />
-        {/* Optionally, you could make these dynamic based on post.mainImage if available */}
+        {/* Use excerpt for description if available */}
+        <meta name="description" content={post?.excerpt || 'Read insights from 33 Digital on building products that scale themselves'} />
+        {/* Use post banner image for social share if available, otherwise default */}
+        <meta property="og:image" content={post?.bannerImage ? urlFor(post.bannerImage).width(1200).height(630).url() : "/lovable-uploads/33 Digital.png"} />
+        <meta name="twitter:image" content={post?.bannerImage ? urlFor(post.bannerImage).width(1200).height(630).url() : "/lovable-uploads/33 Digital.png"} />
+        <meta name="twitter:card" content="summary_large_image" /> {/* Good practice for Twitter cards */}
       </Helmet>
       <Navbar />
 
