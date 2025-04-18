@@ -36,6 +36,7 @@ export interface Post {
   slug: { current: string };
   mainImage?: SanityImageSource; // Make optional if not all posts have images
   tags?: string[];
+  excerpt?: string; // Add optional excerpt field
   publishedAt: string;
   body: any[]; // Adjust type based on your Portable Text needs
 }

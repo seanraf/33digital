@@ -9,31 +9,7 @@ import { ArrowRight } from 'lucide-react'; // Import icon for link
 import Footer from '@/components/Footer';
 import { sanityClient, Post } from '@/lib/sanityClient'; // Import Sanity client and Post type
 
-// Helper function to generate a simple text excerpt from Portable Text
-const generateExcerpt = (body: any[] | undefined, maxLength = 150): string => {
-  if (!body) {
-    return 'No content available.';
-  }
-  let text = '';
-  for (const block of body) {
-    if (block._type === 'block' && block.children) {
-      for (const span of block.children) {
-        if (span._type === 'span' && span.text) {
-          text += span.text + ' ';
-        }
-      }
-    }
-    if (text.length >= maxLength) {
-      break;
-    }
-  }
-  text = text.trim();
-  if (text.length > maxLength) {
-    return text.substring(0, maxLength) + '...';
-  }
-  return text || 'No text content available.';
-};
-
+// Removed generateExcerpt helper function
 
 const PortfolioPage = () => {
   const [portfolioPosts, setPortfolioPosts] = useState<Post[]>([]);
@@ -48,12 +24,12 @@ const PortfolioPage = () => {
       setLoading(true);
       setError(null);
       try {
-        // Update queries to select specific fields
+        // Update queries to select excerpt field
         const portfolioQuery = `*[_type == "post" && "portfolio" in tags[]] | order(publishedAt desc) {
-          _id, title, slug, body
+          _id, title, slug, excerpt, mainImage
         }`;
         const thesisQuery = `*[_type == "post" && "thesis" in tags[]] | order(publishedAt desc) {
-           _id, title, slug, body
+           _id, title, slug, excerpt, mainImage
         }`;
 
         const [portfolioResult, thesisResult] = await Promise.all([
@@ -101,12 +77,10 @@ const PortfolioPage = () => {
         {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {thesisPosts.length > 0 ? (
-              thesisPosts.map((post) => {
-                const excerpt = generateExcerpt(post.body);
-                return (
+              thesisPosts.map((post) => ( // Removed extra parenthesis here
                   <div key={post._id} className="bg-gray-900 p-6 rounded-lg shadow border border-gray-800 flex flex-col">
                     <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                    <p className="text-gray-400 mb-4 text-sm flex-grow">{excerpt}</p>
+                    <p className="text-gray-400 mb-4 text-sm flex-grow">{post.excerpt || 'No excerpt available.'}</p>
                     <Link
                       to={`/blog/${post.slug?.current}`} // Link to the full post
                       className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
@@ -114,8 +88,7 @@ const PortfolioPage = () => {
                       Read More <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </div>
-                );
-              })
+              )) // Moved closing parenthesis here
             ) : (
               <p className="text-center col-span-full">No thesis posts found.</p>
             )}
@@ -131,12 +104,10 @@ const PortfolioPage = () => {
          {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioPosts.length > 0 ? (
-              portfolioPosts.map((post) => {
-                 const excerpt = generateExcerpt(post.body);
-                 return (
+              portfolioPosts.map((post) => ( // Removed extra parenthesis here
                    <div key={post._id} className="bg-gray-900 p-6 rounded-lg shadow border border-gray-800 flex flex-col">
                      <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                     <p className="text-gray-400 mb-4 text-sm flex-grow">{excerpt}</p>
+                     <p className="text-gray-400 mb-4 text-sm flex-grow">{post.excerpt || 'No excerpt available.'}</p>
                      <Link
                        to={`/blog/${post.slug?.current}`} // Link to the full post
                        className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
@@ -144,8 +115,7 @@ const PortfolioPage = () => {
                        Read More <ArrowRight className="ml-1 h-4 w-4" />
                      </Link>
                    </div>
-                 );
-               })
+               )) // Moved closing parenthesis here
             ) : (
               <p className="text-center col-span-full">No portfolio posts found.</p>
             )}

@@ -36,7 +36,7 @@ const BlogPage = () => {
           mainImage,
           publishedAt,
           tags,
-          body // Fetch body if needed for excerpt later
+          excerpt // Fetch excerpt
         }`;
         const result = await sanityClient.fetch<Post[]>(query);
         setPosts(result);
@@ -111,8 +111,10 @@ const BlogPage = () => {
                     {/* Reading time removed - not in current Sanity schema */}
                   </div>
                   <h3 className="font-bold text-xl mb-2">{post.title}</h3>
-                  {/* Excerpt removed - requires Portable Text handling or schema change */}
-                  {/* <p className="text-gray-300 mb-4 line-clamp-3">...</p> */}
+                  {/* Display excerpt if available */}
+                  <p className="text-gray-400 mb-4 text-sm line-clamp-3">
+                    {post.excerpt || 'No excerpt available.'}
+                  </p>
                   <a
                     href={`/blog/${post.slug.current}`} // Use Sanity's slug.current
                     className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium"

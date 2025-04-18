@@ -22,6 +22,14 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      description: 'A short summary of the post, used in previews.',
+      validation: (Rule) => Rule.max(200).warning('Excerpt should ideally be concise.'),
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
