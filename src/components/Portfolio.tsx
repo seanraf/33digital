@@ -1,18 +1,9 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
-interface PortfolioItem {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt: string;
-  feature_image: string | null;
-}
-
-const PortfolioCard = ({ post }: { post: PortfolioItem }) => {
+const PortfolioCard = ({ post }: { post: any }) => {
   return (
     <div className="group rounded-lg overflow-hidden transition-all duration-300 hover:transform hover:scale-[1.02]">
       <div className="aspect-video bg-studio-muted/20 rounded-t-lg overflow-hidden">
@@ -43,107 +34,29 @@ const PortfolioCard = ({ post }: { post: PortfolioItem }) => {
 };
 
 const Portfolio = () => {
-  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchPortfolioItems = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('posts')
-          .select('id, title, slug, excerpt, feature_image_id')
-          .eq('status', 'published')
-          .in('tags.name', ['Portfolio'])
-          .order('published_at', { ascending: false });
-
-        if (error) {
-          console.error('Error fetching portfolio items:', error);
-          setError('Failed to load portfolio items');
-        } else if (data && data.length > 0) {
-          // For each portfolio item, fetch its feature image
-          const portfolioWithImages = await Promise.all(
-            data.map(async (item) => {
-              if (item.feature_image_id) {
-                const { data: imageData } = await supabase
-                  .from('media')
-                  .select('url')
-                  .eq('id', item.feature_image_id)
-                  .single();
-                
-                return {
-                  ...item,
-                  feature_image: imageData?.url || null
-                };
-              }
-              return {
-                ...item,
-                feature_image: null
-              };
-            })
-          );
-          
-          setPortfolioItems(portfolioWithImages);
-        } else {
-          // Fallback to static data if no posts found
-          setPortfolioItems([
-            {
-              id: 1,
-              title: "Project One",
-              slug: "project-one",
-              excerpt: "Building the future of digital communities",
-              feature_image: null
-            },
-            {
-              id: 2,
-              title: "Project Two",
-              slug: "project-two",
-              excerpt: "Revolutionizing how teams collaborate",
-              feature_image: null
-            },
-            {
-              id: 3,
-              title: "Project Three",
-              slug: "project-three",
-              excerpt: "Making data accessible to everyone",
-              feature_image: null
-            }
-          ]);
-        }
-      } catch (err) {
-        console.error('Error in portfolio fetch:', err);
-        setError('Something went wrong while loading portfolio items');
-        // Fallback to static data
-        setPortfolioItems([
-          {
-            id: 1,
-            title: "Project One",
-            slug: "project-one",
-            excerpt: "Building the future of digital communities",
-            feature_image: null
-          },
-          {
-            id: 2,
-            title: "Project Two",
-            slug: "project-two",
-            excerpt: "Revolutionizing how teams collaborate",
-            feature_image: null
-          },
-          {
-            id: 3,
-            title: "Project Three",
-            slug: "project-three",
-            excerpt: "Making data accessible to everyone",
-            feature_image: null
-          }
-        ]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPortfolioItems();
-  }, []);
+  const staticPosts = [
+    {
+      id: "1",
+      title: "Project One",
+      slug: "project-one",
+      excerpt: "Building the future of digital communities",
+      feature_image: null
+    },
+    {
+      id: "2",
+      title: "Project Two",
+      slug: "project-two",
+      excerpt: "Revolutionizing how teams collaborate",
+      feature_image: null
+    },
+    {
+      id: "3",
+      title: "Project Three",
+      slug: "project-three",
+      excerpt: "Making data accessible to everyone",
+      feature_image: null
+    }
+  ];
 
   return (
     <section id="portfolio" className="py-24">
@@ -157,22 +70,14 @@ const Portfolio = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {portfolioItems.length > 0 ? (
-            portfolioItems.map((post) => (
-              <PortfolioCard key={post.id} post={post} />
-            ))
-          ) : (
-            <div className="col-span-3 text-center py-10">
-              <p className="text-gray-400">More projects coming soon...</p>
-            </div>
-          )}
+          {staticPosts.map((post) => (
+            <PortfolioCard key={post.id} post={post} />
+          ))}
         </div>
 
-        {portfolioItems.length > 0 && (
-          <div className="text-center mt-12 text-gray-300">
-            <p className="text-lg italic">More coming soon...</p>
-          </div>
-        )}
+        <div className="text-center mt-12 text-gray-300">
+          <p className="text-lg italic">More coming soon...</p>
+        </div>
       </div>
     </section>
   );

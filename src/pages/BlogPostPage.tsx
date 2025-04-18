@@ -8,17 +8,14 @@ import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { supabase } from '@/integrations/supabase/client';
 
 // Define Post interface
 interface Post {
-  id: number;
+  id: string;
   title: string;
   slug: string;
-  content?: any;
-  html?: string;
+  html: string;
   feature_image?: string;
-  feature_image_id?: number;
   published_at: string;
   primary_tag?: {
     name: string;
@@ -36,7 +33,6 @@ const BlogPostPage = () => {
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,149 +41,55 @@ const BlogPostPage = () => {
     const fetchPost = async () => {
       setLoading(true);
       try {
-        // Fetch the post with the matching slug
-        const { data: postData, error: postError } = await supabase
-          .from('posts')
-          .select(`
-            id, 
-            title, 
-            slug, 
-            content, 
-            feature_image_id,
-            published_at,
-            reading_time
-          `)
-          .eq('slug', slug)
-          .single();
-
-        if (postError) {
-          console.error('Failed to fetch post:', postError);
-          setError('Failed to load this blog post');
-          setLoading(false);
-          return;
-        }
-        
-        // Fetch additional data
-        let featureImage = null;
-        let primaryTag = null;
-        
-        // Fetch feature image if it exists
-        if (postData.feature_image_id) {
-          const { data: imageData } = await supabase
-            .from('media')
-            .select('url')
-            .eq('id', postData.feature_image_id)
-            .single();
-            
-          if (imageData) {
-            featureImage = imageData.url;
-          }
-        }
-        
-        // Fetch the tag for this post
-        const { data: tagData } = await supabase
-          .from('posts_rels')
-          .select('tags_id')
-          .eq('parent_id', postData.id)
-          .eq('path', 'tags')
-          .limit(1);
-          
-        if (tagData && tagData.length > 0 && tagData[0].tags_id) {
-          const { data: tag } = await supabase
-            .from('tags')
-            .select('name')
-            .eq('id', tagData[0].tags_id)
-            .single();
-            
-          if (tag) {
-            primaryTag = {
-              name: tag.name,
-              slug: tag.name.toLowerCase().replace(/\s+/g, '-')
-            };
-          }
-        }
-        
-        // Construct the post object
-        const fullPost: Post = {
-          ...postData,
-          feature_image: featureImage,
-          html: postData.content ? JSON.stringify(postData.content) : "<p>Content not available</p>",
-          primary_tag: primaryTag,
+        // For demo purposes, we'll simulate a post
+        const demoPost: Post = {
+          id: '1',
+          title: 'The End of Mass Social and the Rise of Micro-Communities',
+          slug: slug || 'demo-post',
+          html: `<p>This is a sample blog post content. In a real implementation, this would be fetched from your Ghost CMS instance.</p>
+          <h2>Why micro-communities matter</h2>
+          <p>As social media platforms have become increasingly saturated with content, people are seeking more authentic, meaningful connections in smaller, more focused communities.</p>
+          <p>These micro-communities offer several advantages:</p>
+          <ul>
+            <li>More authentic engagement</li>
+            <li>Higher trust between members</li>
+            <li>Better signal-to-noise ratio</li>
+            <li>Stronger sense of belonging</li>
+          </ul>
+          <p>For founders, this shift represents both a challenge and an opportunity. Building products that facilitate these kinds of communities requires a different approach to design and growth.</p>`,
+          published_at: '2023-05-15T10:00:00.000Z',
+          primary_tag: {
+            name: 'Strategy',
+            slug: 'strategy'
+          },
           primary_author: {
-            name: "33 Digital Team"
-          }
+            name: 'Sean',
+            profile_image: 'https://via.placeholder.com/150'
+          },
+          reading_time: 5,
+          feature_image: 'https://via.placeholder.com/1200x600'
         };
-        
-        setPost(fullPost);
-        
-        // Fetch related posts
-        fetchRelatedPosts(fullPost);
+
+        // Set post data
+        setTimeout(() => {
+          setPost(demoPost);
+          setLoading(false);
+        }, 800);
+
       } catch (err) {
-        console.error('Failed to process post data:', err);
+        console.error('Failed to fetch post:', err);
         setError('Failed to load this blog post');
-      } finally {
         setLoading(false);
       }
     };
-    
-    const fetchRelatedPosts = async (currentPost: Post) => {
-      try {
-        // Get 2 related posts, excluding the current one
-        const { data } = await supabase
-          .from('posts')
-          .select('id, title, slug, excerpt')
-          .neq('id', currentPost.id)
-          .order('published_at', { ascending: false })
-          .limit(2);
-          
-        if (data) {
-          setRelatedPosts(data);
-        }
-      } catch (err) {
-        console.error('Failed to fetch related posts:', err);
-      }
-    };
 
-    if (slug) {
-      fetchPost();
-    }
+    fetchPost();
   }, [slug]);
 
   // Format date
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
-  };
-
-  // Function to render the post content
-  const renderPostContent = () => {
-    if (!post || !post.html) return null;
-    
-    let content;
-    try {
-      // If content is stored as JSON, we'll need to handle it
-      if (post.content && typeof post.content === 'object') {
-        // This is a simplified version - you might need more complex rendering logic
-        // depending on how your content is structured
-        content = (
-          <div>
-            {post.content.html ? (
-              <div dangerouslySetInnerHTML={{ __html: post.content.html }} />
-            ) : (
-              <p>This post has no content yet.</p>
-            )}
-          </div>
-        );
-      } else {
-        // If it's a string of HTML
-        content = <div dangerouslySetInnerHTML={{ __html: post.html }} />;
-      }
-    } catch (e) {
-      console.error('Error rendering post content:', e);
-      content = <p>Error displaying post content.</p>;
-    }
-    
-    return content;
   };
 
   return (
@@ -260,9 +162,10 @@ const BlogPostPage = () => {
                     )}
                   </header>
 
-                  <div className="prose prose-invert prose-lg max-w-none">
-                    {renderPostContent()}
-                  </div>
+                  <div 
+                    className="prose prose-invert prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{ __html: post.html }}
+                  />
 
                   {post.primary_author && (
                     <div className="mt-16 pt-8 border-t border-gray-800">
@@ -283,21 +186,23 @@ const BlogPostPage = () => {
                   )}
                 </article>
 
-                {relatedPosts.length > 0 && (
-                  <div className="mt-16 pt-8 border-t border-gray-800">
-                    <h3 className="text-xl font-bold mb-4">Continue Reading</h3>
-                    <div className="grid grid-cols-1 gap-8">
-                      {relatedPosts.map(relatedPost => (
-                        <Link to={`/blog/${relatedPost.slug}`} key={relatedPost.id} className="block group">
-                          <h4 className="text-lg font-medium group-hover:text-studio-accent transition-colors">
-                            {relatedPost.title}
-                          </h4>
-                          <p className="text-gray-400 mt-1">{relatedPost.excerpt}</p>
-                        </Link>
-                      ))}
-                    </div>
+                <div className="mt-16 pt-8 border-t border-gray-800">
+                  <h3 className="text-xl font-bold mb-4">Continue Reading</h3>
+                  <div className="grid grid-cols-1 gap-8">
+                    <Link to="/blog/sample-post-1" className="block group">
+                      <h4 className="text-lg font-medium group-hover:text-studio-accent transition-colors">
+                        AI for Founders: Build Smarter, Not Harder
+                      </h4>
+                      <p className="text-gray-400 mt-1">How early-stage founders can leverage AI to create unfair advantages</p>
+                    </Link>
+                    <Link to="/blog/sample-post-2" className="block group">
+                      <h4 className="text-lg font-medium group-hover:text-studio-accent transition-colors">
+                        Gamification is Dead. Long Live the Game.
+                      </h4>
+                      <p className="text-gray-400 mt-1">Why product-led growth requires deep understanding of genuine motivation</p>
+                    </Link>
                   </div>
-                )}
+                </div>
               </>
             ) : null}
           </div>
