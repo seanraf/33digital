@@ -23,10 +23,18 @@ interface Post {
   tags?: string[];
 }
 
+// Define a more specific interface for related posts which need fewer fields
+interface RelatedPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+}
+
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<Post | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
+  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -61,6 +69,7 @@ const BlogPostPage = () => {
           if (relatedError) {
             console.error('Error fetching related posts:', relatedError);
           } else if (relatedData) {
+            // Now setting relatedData to RelatedPost[] instead of Post[]
             setRelatedPosts(relatedData);
           }
         } else {
