@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,6 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+<<<<<<< HEAD
 import { sanityClient, urlFor, Post } from '@/lib/sanityClient'; // Import Sanity client, urlFor, and Post type
 import { PortableText } from '@portabletext/react'; // Import PortableText component
 
@@ -16,12 +17,44 @@ import { PortableText } from '@portabletext/react'; // Import PortableText compo
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<Post | null>(null); // Use Sanity Post type
+=======
+import { supabase } from '@/lib/supabase';
+
+// Define Post interface
+interface Post {
+  id: string;
+  title: string;
+  slug: string;
+  html: string;
+  feature_image: string | null;
+  published_at: string;
+  excerpt: string;
+  reading_time?: number;
+  tags?: string[];
+}
+
+// Define a more specific interface for related posts which need fewer fields
+interface RelatedPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+}
+
+const BlogPostPage = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const [post, setPost] = useState<Post | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
+>>>>>>> 6c49f416886769dbd391d2e5d87f3c6730d7964a
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoading(true);
 
+<<<<<<< HEAD
     // Function to fetch a blog post by slug
     // Function to fetch a blog post by slug from Sanity
     const fetchSanityPost = async () => {
@@ -45,6 +78,44 @@ const BlogPostPage = () => {
       } catch (err) {
         console.error('Failed to fetch Sanity post:', err);
         setError('Failed to load this blog post. Please try again later.');
+=======
+    const fetchPost = async () => {
+      try {
+        // Fetch the main post
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .eq('slug', slug)
+          .single();
+
+        if (error) {
+          console.error('Error fetching post:', error);
+          setError('Failed to load this blog post');
+          setPost(null);
+        } else if (data) {
+          setPost(data);
+          
+          // Fetch related posts
+          const { data: relatedData, error: relatedError } = await supabase
+            .from('posts')
+            .select('id, title, slug, excerpt')
+            .neq('id', data.id)
+            .limit(2);
+            
+          if (relatedError) {
+            console.error('Error fetching related posts:', relatedError);
+          } else if (relatedData) {
+            // Now setting relatedData to RelatedPost[] instead of Post[]
+            setRelatedPosts(relatedData);
+          }
+        } else {
+          setError('Blog post not found');
+          setPost(null);
+        }
+      } catch (err) {
+        console.error('Failed to fetch post:', err);
+        setError('Failed to load this blog post');
+>>>>>>> 6c49f416886769dbd391d2e5d87f3c6730d7964a
       } finally {
         setLoading(false);
       }
@@ -104,6 +175,7 @@ const BlogPostPage = () => {
                   <header className="mb-8">
                     <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
                     <div className="flex flex-wrap items-center gap-4 text-gray-400 mb-8">
+<<<<<<< HEAD
                       {/* Display tags if they exist */}
                       {post.tags && post.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
@@ -113,6 +185,12 @@ const BlogPostPage = () => {
                             </Badge>
                           ))}
                         </div>
+=======
+                      {post.tags && post.tags.length > 0 && (
+                        <Badge variant="secondary" className="bg-studio-accent/20 hover:bg-studio-accent/30 text-studio-accent">
+                          {post.tags[0]}
+                        </Badge>
+>>>>>>> 6c49f416886769dbd391d2e5d87f3c6730d7964a
                       )}
                        <span>
                         {formatDate(post.publishedAt)}
@@ -132,6 +210,7 @@ const BlogPostPage = () => {
                     )}
                   </header>
 
+<<<<<<< HEAD
                   {/* Render Portable Text content */}
                   {post.body && (
                     <div className="prose prose-invert prose-lg max-w-none">
@@ -158,8 +237,33 @@ const BlogPostPage = () => {
                       </h4>
                       <p className="text-gray-400 mt-1">Why product-led growth requires deep understanding of genuine motivation</p>
                     </Link>
+=======
+                  <div 
+                    className="prose prose-invert prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{ __html: post.html }}
+                  />
+                </article>
+
+                {relatedPosts.length > 0 && (
+                  <div className="mt-16 pt-8 border-t border-gray-800">
+                    <h3 className="text-xl font-bold mb-4">Continue Reading</h3>
+                    <div className="grid grid-cols-1 gap-8">
+                      {relatedPosts.map(related => (
+                        <div 
+                          key={related.id}
+                          className="block group cursor-pointer"
+                          onClick={() => navigate(`/blog/${related.slug}`)}
+                        >
+                          <h4 className="text-lg font-medium group-hover:text-studio-accent transition-colors">
+                            {related.title}
+                          </h4>
+                          <p className="text-gray-400 mt-1">{related.excerpt}</p>
+                        </div>
+                      ))}
+                    </div>
+>>>>>>> 6c49f416886769dbd391d2e5d87f3c6730d7964a
                   </div>
-                </div>
+                )}
               </>
             ) : null}
           </div>
