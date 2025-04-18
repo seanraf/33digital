@@ -1,6 +1,7 @@
 import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
+  studioHost: 'cms-33digital', // Use new valid hostname
   api: {
     projectId: 'kmyx8122',
     dataset: 'production'

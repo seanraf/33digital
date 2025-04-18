@@ -1,5 +1,4 @@
 import {defineConfig} from 'sanity'
-w 
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {codeInput} from '@sanity/code-input' // Import the code input plugin
