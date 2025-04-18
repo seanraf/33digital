@@ -8,29 +8,14 @@ import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { sanityClient, urlFor, Post } from '@/lib/sanityClient'; // Import Sanity client, urlFor, and Post type
+import { PortableText } from '@portabletext/react'; // Import PortableText component
 
-// Define Post interface
-interface Post {
-  id: string;
-  title: string;
-  slug: string;
-  html: string;
-  feature_image?: string;
-  published_at: string;
-  primary_tag?: {
-    name: string;
-    slug: string;
-  };
-  primary_author?: {
-    name: string;
-    profile_image?: string;
-  };
-  reading_time?: number;
-}
+// Use Post interface from sanityClient.ts
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState<Post | null>(null); // Use Sanity Post type
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,52 +23,34 @@ const BlogPostPage = () => {
     window.scrollTo(0, 0);
 
     // Function to fetch a blog post by slug
-    const fetchPost = async () => {
+    // Function to fetch a blog post by slug from Sanity
+    const fetchSanityPost = async () => {
+      if (!slug) {
+        setError("No post slug provided.");
+        setLoading(false);
+        return;
+      }
       setLoading(true);
+      setError(null);
       try {
-        // For demo purposes, we'll simulate a post
-        const demoPost: Post = {
-          id: '1',
-          title: 'The End of Mass Social and the Rise of Micro-Communities',
-          slug: slug || 'demo-post',
-          html: `<p>This is a sample blog post content. In a real implementation, this would be fetched from your Ghost CMS instance.</p>
-          <h2>Why micro-communities matter</h2>
-          <p>As social media platforms have become increasingly saturated with content, people are seeking more authentic, meaningful connections in smaller, more focused communities.</p>
-          <p>These micro-communities offer several advantages:</p>
-          <ul>
-            <li>More authentic engagement</li>
-            <li>Higher trust between members</li>
-            <li>Better signal-to-noise ratio</li>
-            <li>Stronger sense of belonging</li>
-          </ul>
-          <p>For founders, this shift represents both a challenge and an opportunity. Building products that facilitate these kinds of communities requires a different approach to design and growth.</p>`,
-          published_at: '2023-05-15T10:00:00.000Z',
-          primary_tag: {
-            name: 'Strategy',
-            slug: 'strategy'
-          },
-          primary_author: {
-            name: 'Sean',
-            profile_image: 'https://via.placeholder.com/150'
-          },
-          reading_time: 5,
-          feature_image: 'https://via.placeholder.com/1200x600'
-        };
+        const query = `*[_type == "post" && slug.current == $slug][0]`;
+        const params = { slug };
+        const result = await sanityClient.fetch<Post>(query, params);
 
-        // Set post data
-        setTimeout(() => {
-          setPost(demoPost);
-          setLoading(false);
-        }, 800);
-
+        if (result) {
+          setPost(result);
+        } else {
+          setError("Blog post not found.");
+        }
       } catch (err) {
-        console.error('Failed to fetch post:', err);
-        setError('Failed to load this blog post');
+        console.error('Failed to fetch Sanity post:', err);
+        setError('Failed to load this blog post. Please try again later.');
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchPost();
+    fetchSanityPost();
   }, [slug]);
 
   // Format date
@@ -137,56 +104,46 @@ const BlogPostPage = () => {
                   <header className="mb-8">
                     <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
                     <div className="flex flex-wrap items-center gap-4 text-gray-400 mb-8">
-                      {post.primary_tag && (
-                        <Badge variant="secondary" className="bg-studio-accent/20 hover:bg-studio-accent/30 text-studio-accent">
-                          {post.primary_tag.name}
-                        </Badge>
+                      {/* Display tags if they exist */}
+                      {post.tags && post.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {post.tags.map((tag) => (
+                             <Badge key={tag} variant="secondary" className="bg-studio-accent/20 hover:bg-studio-accent/30 text-studio-accent capitalize">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
                       )}
-                      <span>
-                        {formatDate(post.published_at)}
+                       <span>
+                        {formatDate(post.publishedAt)}
                       </span>
-                      {post.reading_time && (
-                        <span>{post.reading_time} min read</span>
-                      )}
+                      {/* Reading time not available from basic schema */}
                     </div>
-                    
-                    {post.feature_image && (
+
+                    {post.mainImage && ( // Use Sanity mainImage
                       <div className="mb-10">
-                        <img 
-                          src={post.feature_image} 
-                          alt={`Cover image for ${post.title}`} 
-                          className="w-full h-auto rounded-lg object-cover" 
+                        <img
+                          src={urlFor(post.mainImage).width(1200).height(600).url()} // Use urlFor
+                          alt={`Cover image for ${post.title}`}
+                          className="w-full h-auto rounded-lg object-cover"
                           style={{ maxHeight: '500px' }}
                         />
                       </div>
                     )}
                   </header>
 
-                  <div 
-                    className="prose prose-invert prose-lg max-w-none"
-                    dangerouslySetInnerHTML={{ __html: post.html }}
-                  />
-
-                  {post.primary_author && (
-                    <div className="mt-16 pt-8 border-t border-gray-800">
-                      <div className="flex items-center gap-4">
-                        {post.primary_author.profile_image && (
-                          <img 
-                            src={post.primary_author.profile_image} 
-                            alt={`${post.primary_author.name}'s profile`} 
-                            className="w-12 h-12 rounded-full"
-                          />
-                        )}
-                        <div>
-                          <div className="text-sm text-gray-400">Written by</div>
-                          <div className="font-medium">{post.primary_author.name}</div>
-                        </div>
-                      </div>
+                  {/* Render Portable Text content */}
+                  {post.body && (
+                    <div className="prose prose-invert prose-lg max-w-none">
+                       <PortableText value={post.body} />
                     </div>
                   )}
-                </article>
 
-                <div className="mt-16 pt-8 border-t border-gray-800">
+                  {/* Author section removed - not in current Sanity schema */}
+                 </article>
+
+                {/* "Continue Reading" section can be updated later if needed */}
+                 <div className="mt-16 pt-8 border-t border-gray-800">
                   <h3 className="text-xl font-bold mb-4">Continue Reading</h3>
                   <div className="grid grid-cols-1 gap-8">
                     <Link to="/blog/sample-post-1" className="block group">
