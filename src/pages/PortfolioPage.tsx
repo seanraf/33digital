@@ -7,7 +7,7 @@ import Navbar from '@/components/Navbar';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import { ArrowRight } from 'lucide-react'; // Import icon for link
 import Footer from '@/components/Footer';
-import { sanityClient, Post } from '@/lib/sanityClient'; // Import Sanity client and Post type
+import { sanityClient, Post, urlFor } from '@/lib/sanityClient'; // Import Sanity client, Post type, and urlFor
 
 // Removed generateExcerpt helper function
 
@@ -77,16 +77,27 @@ const PortfolioPage = () => {
         {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {thesisPosts.length > 0 ? (
-              thesisPosts.map((post) => ( // Removed extra parenthesis here
-                  <div key={post._id} className="bg-gray-900 p-6 rounded-lg shadow border border-gray-800 flex flex-col">
-                    <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                    <p className="text-gray-400 mb-4 text-sm flex-grow">{post.excerpt || 'No excerpt available.'}</p>
-                    <Link
-                      to={`/blog/${post.slug?.current}`} // Link to the full post
-                      className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
-                    >
-                      Read More <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
+              thesisPosts.map((post) => (
+                  <div key={post._id} className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]"> {/* Added classes */}
+                    {post.mainImage && (
+                      <div className="h-48 overflow-hidden"> {/* Image container */}
+                        <img
+                          src={urlFor(post.mainImage).width(400).height(300).url()}
+                          alt={`Visual representation of ${post.title}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6 flex flex-col flex-grow"> {/* Inner padding and flex */}
+                      <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
+                      <p className="text-gray-400 mb-4 text-sm flex-grow">{post.excerpt || 'No excerpt available.'}</p>
+                      <Link
+                        to={`/blog/${post.slug?.current}`} // Link to the full post
+                        className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
+                      >
+                        Read More <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
                   </div>
               )) // Moved closing parenthesis here
             ) : (
@@ -104,16 +115,27 @@ const PortfolioPage = () => {
          {!loading && !error && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioPosts.length > 0 ? (
-              portfolioPosts.map((post) => ( // Removed extra parenthesis here
-                   <div key={post._id} className="bg-gray-900 p-6 rounded-lg shadow border border-gray-800 flex flex-col">
-                     <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-                     <p className="text-gray-400 mb-4 text-sm flex-grow">{post.excerpt || 'No excerpt available.'}</p>
-                     <Link
-                       to={`/blog/${post.slug?.current}`} // Link to the full post
-                       className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
-                     >
-                       Read More <ArrowRight className="ml-1 h-4 w-4" />
-                     </Link>
+              portfolioPosts.map((post) => (
+                   <div key={post._id} className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]"> {/* Added classes */}
+                     {post.mainImage && (
+                       <div className="h-48 overflow-hidden"> {/* Image container */}
+                         <img
+                           src={urlFor(post.mainImage).width(400).height(300).url()}
+                           alt={`Visual representation of ${post.title}`}
+                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         />
+                       </div>
+                     )}
+                     <div className="p-6 flex flex-col flex-grow"> {/* Inner padding and flex */}
+                       <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
+                       <p className="text-gray-400 mb-4 text-sm flex-grow">{post.excerpt || 'No excerpt available.'}</p>
+                       <Link
+                         to={`/blog/${post.slug?.current}`} // Link to the full post
+                         className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
+                       >
+                         Read More <ArrowRight className="ml-1 h-4 w-4" />
+                       </Link>
+                     </div>
                    </div>
                )) // Moved closing parenthesis here
             ) : (

@@ -52,9 +52,9 @@ const Footer = () => {
               <Link to="/about" className="text-gray-300 hover:text-studio-accent transition-colors">
                 About
               </Link>
-              <Link to="/blog" className="text-gray-300 hover:text-studio-accent transition-colors">
+              {/* <Link to="/blog" className="text-gray-300 hover:text-studio-accent transition-colors">
                 Blog
-              </Link>
+              </Link> */}
               <a
                 href="mailto:hello@33d.co"
                 className="text-gray-300 hover:text-studio-accent transition-colors"

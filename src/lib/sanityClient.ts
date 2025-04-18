@@ -18,7 +18,7 @@ export const sanityClient = createClient({
   projectId: projectId,
   dataset: dataset,
   apiVersion: apiVersion, // use a UTC date string
-  useCdn: true, // `false` if you want to ensure fresh data
+  useCdn: false, // Set to false for local development to bypass CDN cache
 })
 
 // Helper function for generating image URLs with only the asset reference data in your documents.

@@ -93,7 +93,8 @@ const BlogPage = () => {
             {posts.map((post) => (
               <div
                 key={post._id} // Use Sanity's _id
-                className="bg-gray-900 rounded-lg overflow-hidden transform hover:translate-y-[-4px] transition-transform duration-300"
+                // Apply styling similar to About page tiles, add hover transform and group
+                className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]"
               >
                 {post.mainImage && ( // Use Sanity's mainImage
                   <div className="h-48 overflow-hidden">
@@ -110,16 +111,16 @@ const BlogPage = () => {
                     <span>{formatDate(post.publishedAt)}</span> {/* Use Sanity's publishedAt */}
                     {/* Reading time removed - not in current Sanity schema */}
                   </div>
-                  <h3 className="font-bold text-xl mb-2">{post.title}</h3>
+                  <h3 className="font-bold text-xl mb-3">{post.title}</h3> {/* Adjusted margin */}
                   {/* Display excerpt if available */}
-                  <p className="text-gray-400 mb-4 text-sm line-clamp-3">
+                  <p className="text-gray-400 mb-4 text-sm flex-grow line-clamp-3"> {/* Added flex-grow */}
                     {post.excerpt || 'No excerpt available.'}
                   </p>
                   <a
                     href={`/blog/${post.slug.current}`} // Use Sanity's slug.current
-                    className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium"
+                    className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto" // Adjusted classes
                   >
-                    Read More <ArrowRight className="ml-2 h-4 w-4" />
+                    Read More <ArrowRight className="ml-1 h-4 w-4" />
                   </a>
                 </div>
               </div>

@@ -82,14 +82,14 @@ const Navbar = () => {
                 >
                   About
                 </Link>
-                <Link
+                {/* <Link
                   to="/blog"
                   className={`${
                     location.pathname === "/blog" ? "text-studio-accent" : "text-white"
                   } hover:text-studio-accent transition-colors`}
                 >
                   Blog
-                </Link>
+                </Link> */}
                 <a
                   href="mailto:hello@33d.co"
                   className="text-white hover:text-studio-accent transition-colors"

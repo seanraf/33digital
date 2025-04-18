@@ -147,25 +147,7 @@ const BlogPostPage = () => {
                   {/* Author section removed - not in current Sanity schema */}
                  </article>
 
-                {/* "Continue Reading" section can be updated later if needed */}
-                 <div className="mt-16 pt-8 border-t border-gray-800">
-                  <h3 className="text-xl font-bold mb-4">Continue Reading</h3>
-                  <div className="grid grid-cols-1 gap-8">
-                    {/* Placeholder links - replace with dynamic related posts if needed */}
-                    <Link to="/blog/sample-post-1" className="block group">
-                      <h4 className="text-lg font-medium group-hover:text-studio-accent transition-colors">
-                        AI for Founders: Build Smarter, Not Harder
-                      </h4>
-                      <p className="text-gray-400 mt-1">How early-stage founders can leverage AI to create unfair advantages</p>
-                    </Link>
-                    <Link to="/blog/sample-post-2" className="block group">
-                      <h4 className="text-lg font-medium group-hover:text-studio-accent transition-colors">
-                        Gamification is Dead. Long Live the Game.
-                      </h4>
-                      <p className="text-gray-400 mt-1">Why product-led growth requires deep understanding of genuine motivation</p>
-                    </Link>
-                  </div>
-                 </div>
+                {/* "Continue Reading" section removed */}
               </>
             ) : null}
           </div>
