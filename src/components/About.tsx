@@ -8,18 +8,15 @@ const About = () => {
   return (
     <section id="about" className="bg-studio-muted/10 py-24">
       <div className="section-container">
-        {/* Our Positioning Section */}
+        {/* Updated Positioning Section */}
         <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We're not advisors, we're co-builders.</h2>
-          <p className="text-lg text-gray-300 mb-6">
-            At 33 Digital, we stake our time, energy, and expertise into every company we back.
-            We show up like co-founders, working alongside early-stage teams to move faster, think smarter, 
-            and build businesses designed for self-sustaining growth.
+          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We are not advisors. We are builders.</h2>
+          {/* Updated copy and kept text-center */}
+          <p className="text-lg text-gray-300 mb-6 text-center">
+            At 33 Digital, we take a venture approach to building our portfolio by staking sweat equity and deep product expertise into every company we back. From zero to one and beyond, we help founders turn early ideas into digital products that attract users, convert customers, and grow naturally.
           </p>
-          <p className="text-lg text-gray-300">
-            Our specialty is product-led growth — blending strategy, design, development, 
-            and go-to-market execution to build products that acquire, convert, 
-            and retain customers naturally.
+          <p className="text-lg text-gray-300 text-center">
+            We specialize in uncovering hidden growth levers across tech, product, marketing, and operations and turning them into repeatable, compounding systems that unlock sustainable growth. Whether it’s using AI to multiply output, designing for community-powered growth, or crafting game-like systems that drive repeat engagement, we help founders build momentum from day one.
           </p>
           <div className="mt-8 flex justify-center">
             <Button asChild className="bg-studio-accent hover:bg-studio-accent/90">
@@ -33,24 +30,22 @@ const About = () => {
 
         <Separator className="my-16 bg-gray-800/50" />
 
-        {/* How We Work Section */}
+        {/* Updated How We Work Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold mb-10 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">How We Work</h2>
+          {/* Body text removed as per copy doc */}
           <div className="grid md:grid-cols-2 gap-12">
+            {/* Updated "How We Work" tile copy */}
             <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02] hover:border-studio-accent/30">
               <h3 className="text-xl font-bold mb-4">Product-Led Coaching</h3>
               <p className="text-gray-300">
-                For founders who want strategic clarity and sharp executional support, 
-                we act as hands-on product coaches. We help you define your roadmap, 
-                sharpen your user journey, and unlock growth without the guesswork.
+                For founders who want strategic clarity and executional support, we act as hands-on product coaches. We’re the mentor behind the scenes, quietly helping you find the smartest move, build the plan, and execute with discipline.
               </p>
             </div>
             <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02] hover:border-studio-accent/30">
               <h3 className="text-xl font-bold mb-4">Embedded Leadership</h3>
               <p className="text-gray-300">
-                For ventures that need deeper partnership, we step in as fractional leaders, 
-                embedding with your team to drive product direction, growth systems, 
-                and operational excellence day to day.
+                For ventures that need deeper partnership, we step in as fractional leaders, embedding with your team to drive tech direction, product and growth systems, and operational excellence day to day.
               </p>
             </div>
           </div>
@@ -66,11 +61,11 @@ const About = () => {
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 md:mx-auto max-w-6xl values-container">
+            {/* Swapped title back to Grit and updated copy */}
             <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Grit</h3>
               <p className="text-gray-300">
-                We are builders first. We know what it takes to launch, iterate, and win. Every challenge is an opportunity,
-                and we look for founders who share the same relentless drive.
+                  We are builders first. We know what it takes to launch, iterate, and win. The obstacle is usually the way, and we look for founders who embrace that same mentality.
               </p>
             </div>
 
@@ -85,16 +80,15 @@ const About = () => {
             <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Consciousness</h3>
               <p className="text-gray-300">
-                Great products are designed with care. We build technology that enriches people's lives,
-                not exploits them. If it doesn't empower users, we don't build it.
+                Great tech is designed mindfully. We build products that enrich people, not exploit them. If it doesn’t empower users, we don’t build it.
               </p>
             </div>
             <div className="md:col-span-3 md:flex md:justify-center gap-8">
+              {/* Swapped title back to Leverage and updated copy */}
               <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20">
                 <h3 className="text-xl font-bold mb-3 text-studio-accent">Leverage</h3>
                 <p className="text-gray-300">
-                  The best businesses don't scale by brute force. They scale through smart systems and automation.
-                  We build for leverage, so products grow themselves.
+                  The best businesses don't scale by brute force. They use smart systems and automation. We build for leverage, so products grow themselves.
                 </p>
               </div>
 
@@ -111,12 +105,12 @@ const About = () => {
 
         <Separator className="my-16 bg-gray-800/50" />
 
-        {/* Meet Sean Section */}
+        {/* Updated Meet Sean Section */}
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Meet Sean</h2>
           <div className="md:flex items-start gap-10">
             <div className="md:w-1/3 mb-6 md:mb-0">
-              <div className="bg-studio-muted h-80 rounded-lg mb-4 overflow-hidden shadow-xl">
+              <div className="bg-studio-muted h-80 rounded-lg mb-4 overflow-hidden shadow-xl"> {/* Consider adjusting height if needed */}
                 <img 
                   src="/lovable-uploads/IMG_0085.png" 
                   alt="Sean, founder of 33 Digital, at the Austin studio"
@@ -126,22 +120,22 @@ const About = () => {
             </div>
             <div className="md:w-2/3">
               <p className="text-lg text-gray-300 mb-6">
-                I pursue mastery in digital product design, development, and distribution. 
-                For over a decade, I've led product strategy and development for companies 
-                like American Express, Spotify, and numerous high-growth startups.
+                Sean is the founder and chief product lead at 33 Digital. Sean has spent his career pursuing mastery in digital product design, development, marketing, and distribution. For over 10 years, he’s helped startups and global companies unlock the hidden systems that drive sustainable growth.
               </p>
               <p className="text-lg text-gray-300 mb-6">
-                At Amex, I led research, design, and release of the Cash Back Rewards Overview 
-                page for tens of millions of cardmembers. At Spotify, I managed over 100 ad campaigns 
-                on desktop and mobile, delivering tens of millions of memorable impressions at a 4% engagement rate.
+                His specialty is identifying hidden growth levers across product, marketing, and operations and turning them into compounding systems that drive traction, efficiency, and scale.
               </p>
-              <p className="text-lg text-gray-300 mb-6">
-                I've also brought ALL WORLD to market, a groundbreaking augmented reality app on iOS.
-              </p>
+              <h4 className="text-lg font-semibold text-gray-200 mb-3 mt-8">Selected Experience:</h4>
+              {/* Ensured ul/li structure is correct */}
+              <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                <li>Built HighRewards, a consumer rewards app in the cannabis space, growing to over 10,000 users with 1:1 virality from invites</li>
+                <li>Led project management for over 100 ad campaigns on Spotify desktop and mobile, driving tens of millions of impressions with an average 4% engagement rate.</li>
+                <li>Led research, design, and release of the Cash Back Rewards Overview page on AmericanExpress.com, reducing call center volume for tens of millions of cardmembers.</li>
+                <li>Partnered with Greg Isenberg and Late Checkout to launch Crypto College, an 8-week cohort based course and community of 200+ paid members exploring the future of the internet.</li>
+                <li>Brought ALL WORLD to market — a groundbreaking consumer augmented reality app for iOS.</li>
+              </ul>
               <p className="text-lg text-gray-300">
-                Beyond building businesses, I am a certified meditation instructor and hold a 
-                brown belt in Hapkido. Everything I do is about pursuing growth — personal, 
-                professional, and for the founders we partner with.
+                Sean is also a certified meditation instructor and a brown belt in the martial art Hapkido.
               </p>
             </div>
           </div>

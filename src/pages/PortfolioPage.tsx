@@ -24,12 +24,12 @@ const PortfolioPage = () => {
       setLoading(true);
       setError(null);
       try {
-        // Update queries to select excerpt field
+        // Update queries to select thumbnailImage instead of mainImage
         const portfolioQuery = `*[_type == "post" && "portfolio" in tags[]] | order(publishedAt desc) {
-          _id, title, slug, excerpt, mainImage
+          _id, title, slug, excerpt, thumbnailImage
         }`;
         const thesisQuery = `*[_type == "post" && "thesis" in tags[]] | order(publishedAt desc) {
-           _id, title, slug, excerpt, mainImage
+           _id, title, slug, excerpt, thumbnailImage
         }`;
 
         const [portfolioResult, thesisResult] = await Promise.all([
@@ -63,8 +63,8 @@ const PortfolioPage = () => {
         <div className="section-container">
           <h1 className="text-center mb-6">Our Work and Worldview</h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-10">
-            We don't just build apps. We build businesses that scale themselves.
-            See how our thesis shapes the companies we support, and meet the founders we've bet on.
+            We don't just build apps. We build businesses that scale themselves.<br />
+            See how our venture thesis shapes the companies we support, and explore the projects we’ve bet on.
           </p>
         </div>
       </div>
@@ -78,11 +78,11 @@ const PortfolioPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {thesisPosts.length > 0 ? (
               thesisPosts.map((post) => (
-                  <div key={post._id} className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]"> {/* Added classes */}
-                    {post.mainImage && (
-                      <div className="h-48 overflow-hidden"> {/* Image container */}
+                  <div key={post._id} className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]">
+                    {post.thumbnailImage && ( // Use thumbnailImage
+                      <div className="h-48 overflow-hidden">
                         <img
-                          src={urlFor(post.mainImage).width(400).height(300).url()}
+                          src={urlFor(post.thumbnailImage).width(400).height(300).url()} // Use thumbnailImage
                           alt={`Visual representation of ${post.title}`}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
@@ -116,11 +116,11 @@ const PortfolioPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioPosts.length > 0 ? (
               portfolioPosts.map((post) => (
-                   <div key={post._id} className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]"> {/* Added classes */}
-                     {post.mainImage && (
-                       <div className="h-48 overflow-hidden"> {/* Image container */}
+                   <div key={post._id} className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]">
+                     {post.thumbnailImage && ( // Use thumbnailImage
+                       <div className="h-48 overflow-hidden">
                          <img
-                           src={urlFor(post.mainImage).width(400).height(300).url()}
+                           src={urlFor(post.thumbnailImage).width(400).height(300).url()} // Use thumbnailImage
                            alt={`Visual representation of ${post.title}`}
                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                          />

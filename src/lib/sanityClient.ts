@@ -34,9 +34,10 @@ export interface Post {
   _id: string;
   title: string;
   slug: { current: string };
-  mainImage?: SanityImageSource; // Make optional if not all posts have images
+  bannerImage?: SanityImageSource; // Renamed from mainImage
+  thumbnailImage?: SanityImageSource; // Added thumbnail image
   tags?: string[];
-  excerpt?: string; // Add optional excerpt field
+  excerpt?: string;
   publishedAt: string;
   body: any[]; // Adjust type based on your Portable Text needs
 }

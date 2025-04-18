@@ -30,9 +30,19 @@ export default defineType({
       validation: (Rule) => Rule.max(200).warning('Excerpt should ideally be concise.'),
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'bannerImage', // Renamed from mainImage
+      title: 'Banner image', // Updated title
       type: 'image',
+      description: 'Large image displayed at the top of the post page.',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({ // Added new thumbnail image field
+      name: 'thumbnailImage',
+      title: 'Thumbnail image',
+      type: 'image',
+      description: 'Smaller image used for previews on listing pages (e.g., Blog, Portfolio). Recommended 4:3 aspect ratio.',
       options: {
         hotspot: true,
       },
@@ -118,7 +128,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'mainImage',
+      media: 'bannerImage', // Updated preview to use bannerImage
     },
   },
 })

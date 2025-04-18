@@ -33,10 +33,10 @@ const BlogPage = () => {
           _id,
           title,
           slug,
-          mainImage,
+          thumbnailImage, // Fetch thumbnailImage instead of mainImage
           publishedAt,
           tags,
-          excerpt // Fetch excerpt
+          excerpt
         }`;
         const result = await sanityClient.fetch<Post[]>(query);
         setPosts(result);
@@ -96,10 +96,10 @@ const BlogPage = () => {
                 // Apply styling similar to About page tiles, add hover transform and group
                 className="bg-studio-muted/10 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]"
               >
-                {post.mainImage && ( // Use Sanity's mainImage
+                {post.thumbnailImage && ( // Use thumbnailImage
                   <div className="h-48 overflow-hidden">
                     <img
-                      src={urlFor(post.mainImage).width(400).height(300).url()} // Use urlFor helper
+                      src={urlFor(post.thumbnailImage).width(400).height(300).url()} // Use thumbnailImage
                       alt={`Visual representation of ${post.title}`}
                       className="w-full h-full object-cover"
                     />

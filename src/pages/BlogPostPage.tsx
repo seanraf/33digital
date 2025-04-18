@@ -34,7 +34,10 @@ const BlogPostPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const query = `*[_type == "post" && slug.current == $slug][0]`;
+        // Update query to fetch bannerImage instead of mainImage
+        const query = `*[_type == "post" && slug.current == $slug][0] {
+          _id, title, slug, bannerImage, tags, publishedAt, body, excerpt
+        }`;
         const params = { slug };
         const result = await sanityClient.fetch<Post>(query, params);
 
@@ -125,10 +128,10 @@ const BlogPostPage = () => {
                       {/* Reading time not available from basic schema */}
                     </div>
 
-                    {post.mainImage && ( // Use Sanity mainImage
+                    {post.bannerImage && ( // Use bannerImage
                       <div className="mb-10">
                         <img
-                          src={urlFor(post.mainImage).width(1200).height(600).url()} // Use urlFor
+                          src={urlFor(post.bannerImage).width(1200).height(600).url()} // Use bannerImage
                           alt={`Cover image for ${post.title}`}
                           className="w-full h-auto rounded-lg object-cover"
                           style={{ maxHeight: '500px' }}
