@@ -64,7 +64,7 @@ const PortfolioPage = () => {
           <h1 className="text-center mb-6">Our Work and Worldview</h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-10">
             We don't just build apps. We build businesses that scale themselves.<br />
-            See how our venture thesis shapes the companies we support, and explore the projects we’ve bet on.
+            See how our venture thesis shapes our bets, and explore the work we’ve grown.
           </p>
         </div>
       </div>
