@@ -1,34 +1,9 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-const GHOST_URL = "http://localhost:2368"; // Your local Ghost URL
-const GHOST_CONTENT_API_KEY = "5739f3b93fa4a4488d9d0a715d"; // Your Content API key
-const GHOST_API_VERSION = "v5.0";
-
-type Post = {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  feature_image: string | null;
-};
-
-const fetchPortfolioPosts = async (): Promise<Post[]> => {
-  const url = `${GHOST_URL}/ghost/api/content/posts/?key=${GHOST_CONTENT_API_KEY}&filter=tag:portfolio&include=tags,authors&limit=3`;
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    console.error("Error fetching portfolio posts:", response.status, response.statusText);
-    return [];
-  }
-
-  const data = await response.json();
-  return data.posts;
-};
-
-const PortfolioCard = ({ post }: { post: Post }) => {
+const PortfolioCard = ({ post }: { post: any }) => {
   return (
     <div className="group rounded-lg overflow-hidden transition-all duration-300 hover:transform hover:scale-[1.02]">
       <div className="aspect-video bg-studio-muted/20 rounded-t-lg overflow-hidden">
@@ -40,7 +15,7 @@ const PortfolioCard = ({ post }: { post: Post }) => {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400">
-            No Image
+            Coming Soon
           </div>
         )}
       </div>
@@ -59,27 +34,29 @@ const PortfolioCard = ({ post }: { post: Post }) => {
 };
 
 const Portfolio = () => {
-  const [portfolioPosts, setPortfolioPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const getPortfolioPosts = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const posts = await fetchPortfolioPosts();
-        setPortfolioPosts(posts);
-      } catch (e: any) {
-        setError(e.message || "Failed to load portfolio posts.");
-        console.error("Error fetching portfolio posts:", e);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getPortfolioPosts();
-  }, []);
+  const staticPosts = [
+    {
+      id: "1",
+      title: "Project One",
+      slug: "project-one",
+      excerpt: "Building the future of digital communities",
+      feature_image: null
+    },
+    {
+      id: "2",
+      title: "Project Two",
+      slug: "project-two",
+      excerpt: "Revolutionizing how teams collaborate",
+      feature_image: null
+    },
+    {
+      id: "3",
+      title: "Project Three",
+      slug: "project-three",
+      excerpt: "Making data accessible to everyone",
+      feature_image: null
+    }
+  ];
 
   return (
     <section id="portfolio" className="py-24">
@@ -92,17 +69,11 @@ const Portfolio = () => {
           </p>
         </div>
 
-        {isLoading ? (
-          <p className="text-center text-gray-400">Loading portfolio projects...</p>
-        ) : error ? (
-          <p className="text-center text-red-400">{error}</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {portfolioPosts.map((post) => (
-              <PortfolioCard key={post.id} post={post} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {staticPosts.map((post) => (
+            <PortfolioCard key={post.id} post={post} />
+          ))}
+        </div>
 
         <div className="text-center mt-12 text-gray-300">
           <p className="text-lg italic">More coming soon...</p>
