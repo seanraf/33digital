@@ -1,41 +1,33 @@
 
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, ArrowRight } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious
+} from "@/components/ui/pagination";
 
-// Ghost content API configuration
-const GHOST_URL = "http://localhost:2368"; // Your local Ghost URL
-const GHOST_CONTENT_API_KEY = "5739f3b93fa4a4488d9d0a715d"; // Your Content API key
-const GHOST_API_VERSION = "v5.0";
-
-type Post = {
+interface Post {
   id: string;
   title: string;
   slug: string;
-  html: string;
+  html?: string;
   feature_image: string | null;
   published_at: string;
   excerpt: string;
-  reading_time: number;
-};
-
-const fetchPosts = async (): Promise<Post[]> => {
-  const url = `${GHOST_URL}/ghost/api/content/posts/?key=${GHOST_CONTENT_API_KEY}&filter=tag:-[thesis,portfolio]&include=tags,authors&limit=10`;
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    console.error("Error fetching blog posts:", response.status, response.statusText);
-    return [];
-  }
-
-  const data = await response.json();
-  return data.posts;
-};
+  reading_time?: number;
+  tags?: string[];
+}
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
@@ -47,14 +39,68 @@ const formatDate = (dateString: string): string => {
 };
 
 const BlogPage = () => {
-  const { data: posts, isLoading, error } = useQuery({
-    queryKey: ["blogPosts"],
-    queryFn: fetchPosts,
-  });
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const postsPerPage = 6;
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      try {
+        // Get total count first for pagination
+        const { count, error: countError } = await supabase
+          .from('posts')
+          .select('id', { count: 'exact' });
+          
+        if (countError) {
+          console.error('Error getting post count:', countError);
+        } else if (count) {
+          setTotalPages(Math.ceil(count / postsPerPage));
+        }
+
+        // Then fetch the actual posts with pagination
+        const from = (currentPage - 1) * postsPerPage;
+        const to = from + postsPerPage - 1;
+
+        const { data, error: postsError } = await supabase
+          .from('posts')
+          .select('id, title, slug, excerpt, feature_image, published_at, reading_time, tags')
+          .order('published_at', { ascending: false })
+          .range(from, to);
+
+        if (postsError) {
+          console.error('Error fetching blog posts:', postsError);
+          setError('Failed to load blog posts');
+          setPosts([]);
+        } else if (data && data.length > 0) {
+          setPosts(data);
+        } else {
+          setPosts([]);
+        }
+      } catch (err) {
+        console.error('Unexpected error:', err);
+        setError('An unexpected error occurred');
+        setPosts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, [currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="min-h-screen bg-studio pt-24">
@@ -76,7 +122,7 @@ const BlogPage = () => {
       </div>
 
       <div className="section-container pb-20">
-        {isLoading ? (
+        {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, index) => (
               <div key={index} className="flex flex-col">
@@ -90,15 +136,16 @@ const BlogPage = () => {
         ) : error ? (
           <div className="text-center py-10">
             <p className="text-xl text-red-400">
-              Unable to load blog posts. Please try again later.
+              {error}
             </p>
           </div>
-        ) : (
+        ) : posts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts?.map((post) => (
+            {posts.map((post) => (
               <div 
                 key={post.id} 
-                className="bg-gray-900 rounded-lg overflow-hidden transform hover:translate-y-[-4px] transition-transform duration-300"
+                className="bg-gray-900 rounded-lg overflow-hidden transform hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer"
+                onClick={() => navigate(`/blog/${post.slug}`)}
               >
                 {post.feature_image && (
                   <div className="h-48 overflow-hidden">
@@ -114,25 +161,22 @@ const BlogPage = () => {
                     <Calendar className="h-4 w-4 mr-2" />
                     <span>{formatDate(post.published_at)}</span>
                     <span className="mx-2">•</span>
-                    <span>{post.reading_time} min read</span>
+                    <span>{post.reading_time || 5} min read</span>
                   </div>
                   <h3 className="font-bold text-xl mb-2">{post.title}</h3>
                   <p className="text-gray-300 mb-4 line-clamp-3">
-                    {post.excerpt || post.title}
+                    {post.excerpt}
                   </p>
-                  <a 
-                    href={`/blog/${post.slug}`}
+                  <div 
                     className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium"
                   >
                     Read More <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        )}
-        
-        {!isLoading && !error && (!posts || posts.length === 0) && (
+        ) : (
           <div className="py-16 text-center">
             <h3 className="text-2xl font-bold mb-4">Coming Soon</h3>
             <p className="text-gray-300 mb-8">We're working on great content. Check back soon for articles on:</p>
@@ -144,6 +188,35 @@ const BlogPage = () => {
               <li>The 33 Digital Playbook: Building Self-Sustaining Startups</li>
             </ul>
           </div>
+        )}
+
+        {posts.length > 0 && totalPages > 1 && (
+          <Pagination className="mt-12">
+            <PaginationContent>
+              {currentPage > 1 && (
+                <PaginationItem>
+                  <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
+                </PaginationItem>
+              )}
+              
+              {[...Array(totalPages)].map((_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink 
+                    isActive={currentPage === i + 1}
+                    onClick={() => handlePageChange(i + 1)}
+                  >
+                    {i + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              
+              {currentPage < totalPages && (
+                <PaginationItem>
+                  <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
+                </PaginationItem>
+              )}
+            </PaginationContent>
+          </Pagination>
         )}
       </div>
       <Footer />

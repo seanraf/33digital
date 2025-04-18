@@ -1,7 +1,17 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Calendar } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { Skeleton } from "@/components/ui/skeleton";
+
+interface ThesisPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  published_at: string;
+}
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
@@ -12,7 +22,7 @@ const formatDate = (dateString: string): string => {
   });
 };
 
-const ThesisCard = ({ post }: { post: any }) => {
+const ThesisCard = ({ post }: { post: ThesisPost }) => {
   return (
     <div className="bg-studio-muted/10 rounded-lg p-8 border border-gray-800 hover:border-studio-accent/30 transition-all duration-300">
       <h3 className="text-2xl font-bold mb-4">{post.title}</h3>
@@ -32,6 +42,11 @@ const ThesisCard = ({ post }: { post: any }) => {
 };
 
 const Thesis = () => {
+  const [posts, setPosts] = useState<ThesisPost[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Static fallback data
   const staticPosts = [
     {
       id: "1",
@@ -56,6 +71,36 @@ const Thesis = () => {
     },
   ];
 
+  useEffect(() => {
+    const fetchThesisPosts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('id, title, slug, excerpt, published_at')
+          .contains('tags', ['thesis'])
+          .order('published_at', { ascending: false })
+          .limit(3);
+
+        if (error) {
+          console.error('Error fetching thesis posts:', error);
+          setError('Failed to load thesis posts');
+          setPosts(staticPosts);
+        } else if (data && data.length > 0) {
+          setPosts(data);
+        } else {
+          setPosts(staticPosts);
+        }
+      } catch (err) {
+        console.error('Unexpected error:', err);
+        setPosts(staticPosts);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchThesisPosts();
+  }, []);
+
   return (
     <section id="thesis" className="py-24 bg-gradient-to-b from-studio-muted/5 to-studio">
       <div className="section-container">
@@ -70,9 +115,28 @@ const Thesis = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-          {staticPosts.map((post) => (
-            <ThesisCard key={post.id} post={post} />
-          ))}
+          {loading ? (
+            Array(3).fill(0).map((_, index) => (
+              <div key={`skeleton-${index}`} className="bg-studio-muted/10 rounded-lg p-8 border border-gray-800">
+                <Skeleton className="h-8 w-3/4 mb-4" />
+                <Skeleton className="h-20 w-full mb-6" />
+                <Skeleton className="h-6 w-1/3" />
+                <div className="flex items-center mt-3">
+                  <Skeleton className="h-4 w-4 mr-2" />
+                  <Skeleton className="h-4 w-24" />
+                </div>
+              </div>
+            ))
+          ) : error ? (
+            <div className="col-span-3 text-center py-10">
+              <p className="text-red-400 mb-4">{error}</p>
+              <p>Displaying fallback content</p>
+            </div>
+          ) : (
+            posts.map((post) => (
+              <ThesisCard key={post.id} post={post} />
+            ))
+          )}
         </div>
       </div>
     </section>

@@ -1,9 +1,19 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const PortfolioCard = ({ post }: { post: any }) => {
+interface PortfolioPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  feature_image: string | null;
+}
+
+const PortfolioCard = ({ post }: { post: PortfolioPost }) => {
   return (
     <div className="group rounded-lg overflow-hidden transition-all duration-300 hover:transform hover:scale-[1.02]">
       <div className="aspect-video bg-studio-muted/20 rounded-t-lg overflow-hidden">
@@ -34,6 +44,11 @@ const PortfolioCard = ({ post }: { post: any }) => {
 };
 
 const Portfolio = () => {
+  const [posts, setPosts] = useState<PortfolioPost[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Static fallback data
   const staticPosts = [
     {
       id: "1",
@@ -58,6 +73,36 @@ const Portfolio = () => {
     }
   ];
 
+  useEffect(() => {
+    const fetchPortfolioPosts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('id, title, slug, excerpt, feature_image')
+          .contains('tags', ['portfolio'])
+          .order('published_at', { ascending: false })
+          .limit(3);
+
+        if (error) {
+          console.error('Error fetching portfolio posts:', error);
+          setError('Failed to load portfolio posts');
+          setPosts(staticPosts);
+        } else if (data && data.length > 0) {
+          setPosts(data);
+        } else {
+          setPosts(staticPosts);
+        }
+      } catch (err) {
+        console.error('Unexpected error:', err);
+        setPosts(staticPosts);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPortfolioPosts();
+  }, []);
+
   return (
     <section id="portfolio" className="py-24">
       <div className="section-container">
@@ -70,9 +115,27 @@ const Portfolio = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {staticPosts.map((post) => (
-            <PortfolioCard key={post.id} post={post} />
-          ))}
+          {loading ? (
+            Array(3).fill(0).map((_, index) => (
+              <div key={`skeleton-${index}`} className="rounded-lg overflow-hidden">
+                <Skeleton className="aspect-video rounded-t-lg" />
+                <div className="p-6 rounded-b-lg bg-studio-muted/10 border border-gray-800">
+                  <Skeleton className="h-8 w-3/4 mb-3" />
+                  <Skeleton className="h-16 w-full mb-4" />
+                  <Skeleton className="h-6 w-28" />
+                </div>
+              </div>
+            ))
+          ) : error ? (
+            <div className="col-span-3 text-center py-10">
+              <p className="text-red-400 mb-4">{error}</p>
+              <p>Displaying fallback content</p>
+            </div>
+          ) : (
+            posts.map((post) => (
+              <PortfolioCard key={post.id} post={post} />
+            ))
+          )}
         </div>
 
         <div className="text-center mt-12 text-gray-300">
