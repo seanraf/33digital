@@ -82,6 +82,14 @@ const Navbar = () => {
                 >
                   About
                 </Link>
+                <Link
+                  to="/friends-of-sean"
+                  className={`${
+                    location.pathname === "/friends-of-sean" ? "text-studio-accent" : "text-white"
+                  } hover:text-studio-accent transition-colors`}
+                >
+                  Friends of Sean
+                </Link>
                 {/* <Link
                   to="/blog"
                   className={`${
