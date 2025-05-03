@@ -1,3 +1,4 @@
+
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
@@ -29,15 +30,16 @@ export function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
 
-// Define interfaces for your fetched data (optional but recommended for TypeScript)
+// Define interfaces for your fetched data
 export interface Post {
   _id: string;
   title: string;
   slug: { current: string };
-  bannerImage?: SanityImageSource; // Renamed from mainImage
-  thumbnailImage?: SanityImageSource; // Added thumbnail image
+  bannerImage?: SanityImageSource; 
+  thumbnailImage?: SanityImageSource;
   tags?: string[];
   excerpt?: string;
-  publishedAt: string;
-  body: any[]; // Adjust type based on your Portable Text needs
+  publishedAt?: string;
+  body: any[]; // Includes blocks, markDefs for links, etc.
+  externalUrl?: string; // Optional field for storing external URLs
 }
