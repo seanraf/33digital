@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -81,14 +80,6 @@ const Navbar = () => {
                   } hover:text-studio-accent transition-colors`}
                 >
                   About
-                </Link>
-                <Link
-                  to="/friends-of-sean"
-                  className={`${
-                    location.pathname === "/friends-of-sean" ? "text-studio-accent" : "text-white"
-                  } hover:text-studio-accent transition-colors`}
-                >
-                  Friends of Sean
                 </Link>
                 {/* <Link
                   to="/blog"

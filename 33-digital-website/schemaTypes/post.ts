@@ -1,4 +1,8 @@
 import {defineField, defineType} from 'sanity'
+import CenterAlignIcon from '../../src/components/icons/CenterAlignIcon'; // Placeholder import
+import LeftAlignIcon from '../../src/components/icons/LeftAlignIcon'; // Placeholder import
+import RightAlignIcon from '../../src/components/icons/RightAlignIcon'; // Placeholder import
+import { TextAlign } from '../../src/components/Sanity/TextAlign'; // Placeholder import
 
 export default defineType({
   name: 'post',
@@ -87,6 +91,9 @@ export default defineType({
               {title: 'Code', value: 'code'},
               {title: 'Underline', value: 'underline'},
               {title: 'Strike', value: 'strike-through'},
+              {title: 'Left', value: 'left', icon: LeftAlignIcon, component: TextAlign},
+              {title: 'Center', value: 'center', icon: CenterAlignIcon, component: TextAlign},
+              {title: 'Right', value: 'right', icon: RightAlignIcon, component: TextAlign},
             ],
             annotations: [
               {
