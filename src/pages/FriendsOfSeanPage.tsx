@@ -180,10 +180,23 @@ const FriendsOfSeanPage = () => {
         {error && <p className="text-center text-red-500 py-8">{error}</p>}
         
         {/* Growth Partner Tiles - Similar to Portfolio Page */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-8 justify-items-center">
           {growthPartners.length > 0 ? (
             growthPartners.map((partner) => {
-              const externalUrl = extractExternalUrl(partner.body);
+              let externalUrl: string | null = null;
+              if (partner.body && Array.isArray(partner.body)) {
+                for (const block of partner.body) {
+                  if (block._type === 'block' && block.children && Array.isArray(block.children)) {
+                    for (const child of block.children) {
+                      if (child._type === 'span' && child.text) {
+                        externalUrl = child.text;
+                        break; // Assuming the first text span is the URL
+                      }
+                    }
+                  }
+                  if (externalUrl) break;
+                }
+              }
               
               return (
                 <Card key={partner._id} className="bg-studio-muted/10 border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 flex flex-col overflow-hidden group hover:transform hover:scale-[1.02]">
@@ -202,13 +215,14 @@ const FriendsOfSeanPage = () => {
                   </CardHeader>
                   {externalUrl && (
                     <CardFooter>
-                      <Button 
-                        variant="ghost" 
-                        className="text-studio-accent hover:text-studio-accent-hover"
-                        onClick={() => window.open(externalUrl, '_blank')}
+                      <Link
+                        to={externalUrl}
+                        target="_blank" // Open in new tab
+                        rel="noopener noreferrer" // Security best practice
+                        className="inline-flex items-center text-studio-accent hover:text-studio-accent-hover font-medium text-sm mt-auto"
                       >
                         Learn More <ExternalLink className="ml-1 h-4 w-4" />
-                      </Button>
+                      </Link>
                     </CardFooter>
                   )}
                 </Card>

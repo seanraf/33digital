@@ -51,6 +51,14 @@ export default defineType({
         hotspot: true,
       },
     }),
+    defineField({ // Added new external URL field
+      name: 'externalUrl',
+      title: 'External URL (Learn More)',
+      type: 'url',
+      description: 'Optional: Provide an external link for a "Learn More" button or similar call to action.',
+      // You might want to make this conditional based on a tag or category if only certain posts need it
+      // hidden: ({ document }) => !document?.tags?.includes('growth-partner'), // Example conditional logic
+    }),
      defineField({
       name: 'tags',
       title: 'Tags',
