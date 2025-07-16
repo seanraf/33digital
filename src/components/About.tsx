@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,22 +9,25 @@ const About = () => {
       <div className="section-container">
         {/* Updated Positioning Section */}
         <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We are not advisors. We are builders.</h2>
-          {/* Updated copy and kept text-center */}
-          <p className="text-lg text-gray-300 mb-6 text-center">
-            At 33 Digital, we take a venture approach to building our portfolio by staking sweat equity and deep product expertise into every company we back. From zero to one and beyond, we help founders turn early ideas into digital products that attract users, convert customers, and grow naturally.
-          </p>
-          <p className="text-lg text-gray-300 text-center">
-            We specialize in uncovering hidden growth levers across tech, product, marketing, and operations and turning them into repeatable, compounding systems that unlock sustainable growth. Whether it’s using AI to multiply output, designing for community-powered growth, or crafting game-like systems that drive repeat engagement, we help founders build momentum from day one.
-          </p>
           <div className="mt-8 flex justify-center">
             <Button asChild className="bg-studio-accent hover:bg-studio-accent/90">
               <a href="mailto:hello@33d.co">
-                Get in Touch
+                See How We Work
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
           </div>
+          
+          <h2 className="text-3xl font-bold mb-8 mt-16 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We are not advisors. We are builders.</h2>
+          <p className="text-lg text-gray-300 mb-6 text-center">
+            33 Digital is the personal product incubator of Sean Raftery. We either build and launch original software ideas in-house or partner with founders at day zero to co-found new digital businesses.
+          </p>
+          <p className="text-lg text-gray-300 mb-6 text-center">
+            We embed as co-founding operators with deep product, tech, and operational leadership to help early-stage teams go from idea to traction. Our specialty is identifying hidden growth levers across product development, marketing, and operations and turning them into repeatable, compounding systems that unlock sustainable growth.
+          </p>
+          <p className="text-lg text-gray-300 text-center">
+            Whether it's architecting viral loops, using AI to unlock leverage, or building systems that scale community and trust, we help founders design businesses that grow themselves. We stake our time, skills, and energy into every startup we build.
+          </p>
         </div>
 
         <Separator className="my-16 bg-gray-800/50" />
@@ -39,13 +41,13 @@ const About = () => {
             <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02] hover:border-studio-accent/30">
               <h3 className="text-xl font-bold mb-4">Product-Led Coaching</h3>
               <p className="text-gray-300">
-                For founders who want strategic clarity and executional support, we act as hands-on product coaches. We’re the mentor behind the scenes, quietly helping you find the smartest move, build the plan, and execute with discipline.
+                For founders who want strategic clarity and executional support, we act as hands-on product coaches. We're the mentor behind the scenes, quietly helping you find the smartest move, build the plan, and execute with discipline.
               </p>
             </div>
             <div className="bg-studio-muted/10 p-8 rounded-lg border border-gray-800 transition-transform hover:transform hover:scale-[1.02] hover:border-studio-accent/30">
               <h3 className="text-xl font-bold mb-4">Embedded Leadership</h3>
               <p className="text-gray-300">
-                For ventures that need deeper partnership, we step in as fractional leaders, embedding with your team to drive tech direction, product and growth systems, and operational excellence day to day.
+                For ventures that need deeper partnership, we step in as co-founding leaders, embedding with your team to drive tech direction, product and growth systems, and operational excellence day to day.
               </p>
             </div>
           </div>
@@ -80,7 +82,7 @@ const About = () => {
             <div className="bg-studio-muted/10 p-6 rounded-lg border border-gray-800 transition-all hover:border-studio-accent/50 hover:bg-studio-muted/20 md:col-span-1">
               <h3 className="text-xl font-bold mb-3 text-studio-accent">Consciousness</h3>
               <p className="text-gray-300">
-                Great tech is designed mindfully. We build products that enrich people, not exploit them. If it doesn’t empower users, we don’t build it.
+                Great tech is designed mindfully. We build products that enrich people, not exploit them. If it doesn't empower users, we don't build it.
               </p>
             </div>
             <div className="md:col-span-3 md:flex md:justify-center gap-8">
@@ -120,7 +122,7 @@ const About = () => {
             </div>
             <div className="md:w-2/3">
               <p className="text-lg text-gray-300 mb-6">
-                Sean is the founder and chief product lead at 33 Digital. Sean has spent his career pursuing mastery in digital product design, development, marketing, and distribution. For over 10 years, he’s helped startups and global companies unlock the hidden systems that drive sustainable growth.
+                Sean is the founder and chief product lead at 33 Digital. Sean has spent his career pursuing mastery in digital product design, development, marketing, and distribution. For over 10 years, he's helped startups and global companies unlock the hidden systems that drive sustainable growth.
               </p>
               <p className="text-lg text-gray-300 mb-6">
                 His specialty is identifying hidden growth levers across product, marketing, and operations and turning them into compounding systems that drive traction, efficiency, and scale.
