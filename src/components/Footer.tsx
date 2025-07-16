@@ -12,7 +12,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-6 text-white">33 Digital</h3>
             <p className="text-gray-300 mb-2">
-              A venture and product studio based in Austin, Texas.
+              A product incubator and studio based in Austin, Texas.
             </p>
             <p className="text-gray-300 mb-6">
               We partner with early-stage founders to launch scalable, self-sustaining businesses.

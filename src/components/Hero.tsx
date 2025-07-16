@@ -11,11 +11,8 @@ const Hero = () => {
             We build digital products that <span className="text-studio-accent">sell themselves</span>
           </h1>
           <p className="mt-6 text-xl text-gray-300">
-            33 Digital is a product incubator based in Austin, Texas. We partner with early-stage founders to co-create scalable, self-sustaining digital businesses.
+            33 Digital is a product incubator based in Austin, Texas. We partner with early-stage founders to co-create scalable, self-sustaining digital businesses. Partnering with 33 Digital is an investment in what your product becomes.
           </p>
-           <p className="mt-4 text-lg text-gray-300">
-             Partnering with 33 Digital is an investment in what your product becomes.
-           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/about" className="btn-primary px-8 py-3">
               See How We Work
@@ -32,11 +29,8 @@ const Hero = () => {
             <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
               33 Digital is the personal product incubator of Sean Raftery. We either build and launch original software ideas in-house or partner with founders at day zero to co-found new digital businesses.
             </p>
-            <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-              We embed as fractional operators with deep product, tech, and operational leadership to help early-stage teams go from idea to traction. Our specialty is identifying hidden growth levers across product development, marketing, and operations and turning them into repeatable, compounding systems that unlock sustainable growth.
-            </p>
             <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
-              Whether it's architecting viral loops, using AI to unlock leverage, or building systems that scale community and trust, we help founders design digital businesses that grow themselves. We stake our time, skills, and energy into every startup we build.
+              We embed as co-founding operators with deep product, tech, and operational leadership to help early-stage teams go from idea to traction. Our specialty is identifying hidden growth levers across product development, marketing, and operations and turning them into repeatable, compounding systems that unlock sustainable growth. Whether it's architecting viral loops, using AI to unlock leverage, or building systems that scale community and trust, we help founders design digital businesses that grow themselves. We stake our time, skills, and energy into every startup we build.
             </p>
             {/* Added About Us link */}
             <Link to="/about" className="btn-outline px-8 py-3 mt-6 inline-block"> {/* Added mt-6 and inline-block */}
