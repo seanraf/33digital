@@ -157,9 +157,9 @@ const FriendsOfSeanPage = () => {
             <h3 className="text-2xl font-bold mb-4">Rates</h3>
             <ul className="space-y-3">
               <li className="flex justify-between"><span>Landing Pages / Marketing Sites</span> <span className="font-semibold">$10,000 flat</span></li>
-              <li className="flex justify-between"><span>Lead Engineer</span> <span className="font-semibold">$6,000/month</span></li>
-              <li className="flex justify-between"><span>Support Engineer</span> <span className="font-semibold">$4,000/month</span></li>
-              <li className="flex justify-between"><span>QA</span> <span className="font-semibold">$4,000/month</span></li>
+              <li className="flex justify-between"><span>Lead Engineer</span> <span className="font-semibold">$8,500/month</span></li>
+              <li className="flex justify-between"><span>Support Engineer</span> <span className="font-semibold">$5,500/month</span></li>
+              <li className="flex justify-between"><span>QA</span> <span className="font-semibold">$4,500/month</span></li>
               <li className="flex justify-between"><span>Product Designer</span> <span className="font-semibold">Please inquire for a quote</span></li>
             </ul>
             <p className="mt-4">Reach out to me directly at <a href="mailto:sean@33d.co" className="text-studio-accent hover:text-studio-accent-hover">sean@33d.co</a> to get the process started.</p>
