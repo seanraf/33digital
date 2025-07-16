@@ -9,16 +9,7 @@ const About = () => {
       <div className="section-container">
         {/* Updated Positioning Section */}
         <div className="max-w-4xl mx-auto mb-16">
-          <div className="mt-8 flex justify-center">
-            <Button asChild className="bg-studio-accent hover:bg-studio-accent/90">
-              <a href="mailto:hello@33d.co">
-                See How We Work
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-          
-          <h2 className="text-3xl font-bold mb-8 mt-16 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We are not advisors. We are builders.</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">We are not advisors. We are builders.</h2>
           <p className="text-lg text-gray-300 mb-6 text-center">
             33 Digital is the personal product incubator of Sean Raftery. We either build and launch original software ideas in-house or partner with founders at day zero to co-found new digital businesses.
           </p>
@@ -28,6 +19,14 @@ const About = () => {
           <p className="text-lg text-gray-300 text-center">
             Whether it's architecting viral loops, using AI to unlock leverage, or building systems that scale community and trust, we help founders design businesses that grow themselves. We stake our time, skills, and energy into every startup we build.
           </p>
+          <div className="mt-8 flex justify-center">
+            <Button asChild className="bg-studio-accent hover:bg-studio-accent/90">
+              <a href="mailto:hello@33d.co">
+                Get in Touch
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
         </div>
 
         <Separator className="my-16 bg-gray-800/50" />

@@ -23,7 +23,7 @@ const AboutPage = () => {
         <div className="section-container">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">Who We Are</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center leading-relaxed">
-            33 Digital is a product incubator based in Austin, Texas. We partner with early-stage founders to co-create scalable, self-sustaining digital businesses. Partnering with 33 Digital is an investment in what your product becomes.
+            33 Digital is a product incubator based in Austin, Texas. We partner with early-stage founders to co-create scalable, self-sustaining digital businesses.
           </p>
         </div>
       </div>
