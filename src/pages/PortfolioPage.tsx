@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -63,8 +62,7 @@ const PortfolioPage = () => {
         <div className="section-container">
           <h1 className="text-center mb-6">Our Work and Worldview</h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto text-center mb-10">
-            We don't just build apps. We build businesses that scale themselves.<br />
-            See how our venture thesis shapes our bets, and explore the work we’ve grown.
+            We don't just build apps. We build businesses that scale themselves. See how Sean's personal interests and market insights shape our bets, and explore the work we've grown.
           </p>
         </div>
       </div>
